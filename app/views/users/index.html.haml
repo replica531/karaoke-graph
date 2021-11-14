@@ -1,0 +1,19 @@
+%p#notice= notice
+%h1.text-center ユーザー一覧
+%table.table
+  %thead.table-light
+    %tr
+      %th 名前
+      %th Email
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td
+          = link_to '詳細', user, class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_user_path(user), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', user, method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-outline-danger'
+%br/
+= link_to 'ユーザー登録', new_user_path, class: 'btn btn-outline-primary w-100'

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b 曲名:
+  = @music.title
+%p
+  %b アーティスト:
+  = @music.artist
+%p
+  %b ユーザーID:
+  = @music.user_id
+
+= link_to 'Edit', edit_music_path(@music)
+\|
+= link_to 'Back', musics_path
