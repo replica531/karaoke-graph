@@ -1,2 +1,5 @@
-%h1 StaticPages#home
-%p Find me in app/views/static_pages/home.html.haml
+- provide(:title, "Home")
+%h1.text-center Karaoke Graph
+.row.text-center
+  %p カラオケの点数を管理してくれるWebサービス
+= link_to 'ユーザー一覧', users_path
