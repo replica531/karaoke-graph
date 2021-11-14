@@ -34,7 +34,7 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update music" do
-    patch music_url(@music), params: { music: { artist: @music., title: @music.title, user_id: @music.user_id } }
+    patch music_url(@music), params: { music: { artist: @music.artist, title: @music.title, user_id: @music.user_id } }
     assert_redirected_to music_url(@music)
   end
 
