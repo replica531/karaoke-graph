@@ -1,0 +1,19 @@
+= form_for @music do |f|
+  - if @music.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@music.errors.count, "error")} prohibited this music from being saved:"
+      %ul
+        - @music.errors.full_messages.each do |message|
+          %li= message
+
+  .row
+    .col-md-3.col-form-label 曲名
+    .col-md-9= f.text_field :title, class: 'form-control'
+  .row
+    .col-md-3.col-form-label アーティスト
+    .col-md-9= f.text_field :artist, class: 'form-control'
+  .row
+    .col-md-3.col-form-label ユーザーID
+    .col-md-9= f.number_field :user_id, value: 1, class: 'form-control'
+  .actions
+    = f.submit nil, class: 'btn btn-primary w-100'

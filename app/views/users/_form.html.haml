@@ -7,11 +7,11 @@
       %ul
         - user.errors.full_messages.each do |message|
           %li= message
-  .field
-    = form.label :name
-    = form.text_field :name
-  .field
-    = form.label :email
-    = form.text_field :email
+  .row
+    .col-md-3.col-form-label 名前
+    .col-md-9= form.text_field :name, class: 'form-control'
+  .row
+    .col-md-3.col-form-label Email
+    .col-md-9= form.email_field :email, class: 'form-control'
   .actions
-    = form.submit
+    = form.submit nil, class: 'btn btn-primary w-100'
