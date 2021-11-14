@@ -1,0 +1,13 @@
+%header
+  %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+    .container
+      = link_to root_path, class: 'navbar-brand', id: 'logo' do
+        Karaoke Graph
+      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        %ul.navbar-nav.ms-auto
+          %li.nav-item
+            .btn.btn-lg= link_to '登録', signup_path, class: 'nav-link text-white'
+          %li.nav-item
+            .btn.btn-lg= link_to 'ログイン', signup_path, class: 'nav-link text-white'
