@@ -14,7 +14,7 @@ class MusicsTest < ApplicationSystemTestCase
     visit musics_url
     click_on "New Music"
 
-    fill_in "Artist", with: @music.Artist
+    fill_in "Artist", with: @music.artist
     fill_in "Title", with: @music.title
     fill_in "User", with: @music.user_id
     click_on "Create Music"
@@ -27,7 +27,7 @@ class MusicsTest < ApplicationSystemTestCase
     visit musics_url
     click_on "Edit", match: :first
 
-    fill_in "Artist", with: @music.Artist
+    fill_in "Artist", with: @music.artist
     fill_in "Title", with: @music.title
     fill_in "User", with: @music.user_id
     click_on "Update Music"
