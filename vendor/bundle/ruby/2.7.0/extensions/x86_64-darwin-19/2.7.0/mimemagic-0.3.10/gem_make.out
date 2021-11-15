@@ -1,0 +1,5 @@
+current directory: /Users/fukushimasei/karaoke-graph/vendor/bundle/ruby/2.7.0/gems/mimemagic-0.3.10/ext/mimemagic
+/Users/fukushimasei/.rbenv/versions/2.7.0/bin/ruby -I/Users/fukushimasei/.rbenv/versions/2.7.0/lib/ruby/site_ruby/2.7.0/rubygems -rrubygems /Users/fukushimasei/karaoke-graph/vendor/bundle/ruby/2.7.0/gems/rake-12.3.3/exe/rake RUBYARCHDIR\=/Users/fukushimasei/karaoke-graph/vendor/bundle/ruby/2.7.0/extensions/x86_64-darwin-19/2.7.0/mimemagic-0.3.10 RUBYLIBDIR\=/Users/fukushimasei/karaoke-graph/vendor/bundle/ruby/2.7.0/extensions/x86_64-darwin-19/2.7.0/mimemagic-0.3.10
+/Users/fukushimasei/karaoke-graph/vendor/bundle/ruby/2.7.0/gems/rake-12.3.3/lib/rake/file_utils_ext.rb:35: warning: Using the last argument as keyword parameters is deprecated; maybe ** should be added to the call
+/Users/fukushimasei/.rbenv/versions/2.7.0/lib/ruby/2.7.0/fileutils.rb:206: warning: The called method `mkdir_p' is defined here
+mkdir -p /Users/fukushimasei/karaoke-graph/vendor/bundle/ruby/2.7.0/extensions/x86_64-darwin-19/2.7.0/mimemagic-0.3.10/mimemagic
