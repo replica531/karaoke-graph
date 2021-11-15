@@ -9,6 +9,12 @@
   %p
     %b ユーザーID:
     = @music.user_id
+  %p
+    %strong 登録日時:
+    = @music.created_at.strftime("%Y-%m-%d %H:%M:%S")
+  %p
+    %strong 更新日時:
+    = @music.updated_at.strftime("%Y-%m-%d %H:%M:%S")
 
 = link_to 'Edit', edit_music_path(@music)
 \|

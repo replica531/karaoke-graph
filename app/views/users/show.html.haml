@@ -1,3 +1,4 @@
+- provide(:title, @user.name)
 %p#notice= notice
 .row.text-center
   %p
@@ -6,6 +7,12 @@
   %p
     %strong Email:
     = @user.email
+  %p
+    %strong 登録日時:
+    = @user.created_at.strftime("%Y-%m-%d %H:%M:%S")
+  %p
+    %strong 更新日時:
+    = @user.updated_at.strftime("%Y-%m-%d %H:%M:%S")
 = link_to '編集', edit_user_path(@user)
 |
 = link_to 'Back', users_path
