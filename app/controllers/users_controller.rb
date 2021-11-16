@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user,     only: :index
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def show
@@ -19,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "ユーザー登録に成功しました"
+      flash[:success] = "アカウント登録に成功しました"
       redirect_to @user
     else
       render :new
@@ -28,14 +31,16 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to edit_user_path(@user)
+      flash[:success] = "プロフィールが更新されました"
+      redirect_to user_path(@user)
     else
-      redirect_to :edit
+      render :edit
     end
   end
 
   def destroy
     @user.destroy
+    flash[:success] = "ユーザーを削除しました"
     redirect_to users_path
   end
 
@@ -44,7 +49,24 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "ログインしてください"
+        redirect_to login_url
+      end
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
+
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end
