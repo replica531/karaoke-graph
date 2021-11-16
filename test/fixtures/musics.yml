@@ -2,10 +2,10 @@
 
 one:
   title: MyString
-  : MyString
+  artist: MyString
   user_id: 1
 
 two:
   title: MyString
-  : MyString
+  artist: MyString
   user_id: 1

@@ -6,6 +6,11 @@
   .row.mb-3
     .col-md-3.col-form-label パスワード
     .col-md-9= f.password_field :password, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label
+      = f.label :remember_me, class: "checkbox inline" do
+        = f.check_box :remember_me
+      %span Remember me on this computer
   = f.submit "ログイン", class: "btn btn-primary"
 %p
   新規登録 #{link_to "Sign up now!", signup_path}

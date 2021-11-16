@@ -18,14 +18,10 @@ class MusicsController < ApplicationController
   def create
     @music = Music.new(music_params)
 
-    respond_to do |format|
-      if @music.save
-        format.html { redirect_to musics_path }
-        format.json { render :show, status: :created, location: @music }
-      else
-        format.html { render :new }
-        format.json { render json: @music.errors, status: :unprocessable_entity }
-      end
+    if @music.save
+      redirect_to musics_path
+    else
+      render :new
     end
   end
 
