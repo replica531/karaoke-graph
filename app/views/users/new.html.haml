@@ -1,3 +1,5 @@
-%h1 ユーザー登録
+- provide(:title, "Sign up")
+- provide(:button_text, 'アカウント登録')
+%h1 アカウント登録
 = render 'form', user: @user
 = link_to 'Back', users_path
