@@ -9,15 +9,16 @@
         %ul.navbar-nav.ms-auto
           - if logged_in?
             .dropdown
-              %a#dropdownMenuLink.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
-                Dropdown link
+              %a#navbarNavDarkDropdown.btn.btn-info.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+                Account
               %ul.dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
                 %li
-                  %a.dropdown-item{:href => "#"} Action
+                  %a.dropdown-item{:href => user_path(current_user)} Profile
                 %li
-                  %a.dropdown-item{:href => "#"} Another action
-                %li
-                  %a.dropdown-item{:href => "#"} Something else here
+                  %a.dropdown-item{:href => user_path(current_user)} Settings
+                %li.dropdown-divider
+                %li.dropdown-item
+                  = link_to "Log out", logout_path, method: :delete
           - else
             %li.nav-item
               .btn.btn-lg= link_to '登録', signup_path, class: 'nav-link text-white'
