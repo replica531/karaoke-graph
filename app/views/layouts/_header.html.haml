@@ -7,7 +7,19 @@
         %span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         %ul.navbar-nav.ms-auto
-          %li.nav-item
-            .btn.btn-lg= link_to '登録', signup_path, class: 'nav-link text-white'
-          %li.nav-item
-            .btn.btn-lg= link_to 'ログイン', signup_path, class: 'nav-link text-white'
+          - if logged_in?
+            .dropdown
+              %a#dropdownMenuLink.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+                Dropdown link
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
+                %li
+                  %a.dropdown-item{:href => "#"} Action
+                %li
+                  %a.dropdown-item{:href => "#"} Another action
+                %li
+                  %a.dropdown-item{:href => "#"} Something else here
+          - else
+            %li.nav-item
+              .btn.btn-lg= link_to '登録', signup_path, class: 'nav-link text-white'
+            %li.nav-item
+              .btn.btn-lg= link_to 'ログイン', login_path, class: 'nav-link text-white'
