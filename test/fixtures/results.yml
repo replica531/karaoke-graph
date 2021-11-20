@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  point: 1.5
+  memo: MyText
+  datetime: 2021-11-21 03:46:44
+  music: one
+
+two:
+  point: 1.5
+  memo: MyText
+  datetime: 2021-11-21 03:46:44
+  music: two
