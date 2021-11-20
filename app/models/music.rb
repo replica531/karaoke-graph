@@ -3,5 +3,5 @@ class Music < ApplicationRecord
   validates :title, presence: true
   validates :artist, presence: true
   validates :user_id, presence: true
-  has_many :results
+  has_many :results, dependent: :destroy
 end
