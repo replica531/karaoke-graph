@@ -6,6 +6,7 @@
   .row.mb-3
     .col-md-3.col-form-label パスワード
     .col-md-9= f.password_field :password, class: 'form-control'
+    = link_to "(forgot password)", password_resets_new_path
   .row.mb-3
     .col-md-3.col-form-label
       = f.label :remember_me, class: "checkbox inline" do
