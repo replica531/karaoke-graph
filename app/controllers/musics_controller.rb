@@ -2,7 +2,7 @@ class MusicsController < ApplicationController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
 
   def index
-    @musics = Music.all
+    @musics = current_user.musics.all
   end
 
   def show

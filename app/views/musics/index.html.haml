@@ -13,12 +13,12 @@
       %tr
         %td= music.title
         %td= music.artist
-        %td= music.user_id
+        %td= music.user.name
         %td
-          = link_to '詳細', music, class: 'btn btn-sm btn-outline-primary'
-          = link_to '編集', edit_music_path(music), class: 'btn btn-sm btn-outline-primary'
-          = link_to '削除', music, method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-outline-danger'
+          = link_to '詳細', user_music_path(id: music.id), class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_user_music_path(id: music.id), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', user_music_path(id: music.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-outline-danger'
 
 %br
 
-= link_to '曲登録', new_music_path, class: 'btn btn-outline-primary w-100'
+= link_to '曲登録', new_user_music_path, class: 'btn btn-outline-primary w-100'
