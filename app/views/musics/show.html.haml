@@ -16,6 +16,8 @@
     %strong 更新日時:
     = @music.updated_at.strftime("%Y-%m-%d %H:%M:%S")
 
-= link_to 'Edit', edit_user_music_path(@music)
+= link_to '得点', user_music_results_path(music_id: @music.id)
+
+= link_to '編集', edit_user_music_path(@music)
 \|
 = link_to 'Back', user_musics_path

@@ -11,8 +11,5 @@
   .row
     .col-md-3.col-form-label アーティスト
     .col-md-9= f.text_field :artist, class: 'form-control'
-  .row
-    .col-md-3.col-form-label ユーザーID
-    .col-md-9= f.number_field :user_id, value: 1, class: 'form-control'
   .actions
     = f.submit nil, class: 'btn btn-primary w-100'

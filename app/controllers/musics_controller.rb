@@ -17,9 +17,9 @@ class MusicsController < ApplicationController
 
   def create
     @music = Music.new(music_params)
-
+    @music.user_id = current_user.id
     if @music.save
-      redirect_to musics_path
+      redirect_to user_musics_path
     else
       render :new
     end
@@ -28,21 +28,16 @@ class MusicsController < ApplicationController
   def update
     respond_to do |format|
       if @music.update(music_params)
-        format.html { redirect_to @music}
-        format.json { render :show, status: :ok, location: @music }
+        redirect_to user_musics_path
       else
-        format.html { render :edit }
-        format.json { render json: @music.errors, status: :unprocessable_entity }
+        render :edit
       end
     end
   end
 
   def destroy
     @music.destroy
-    respond_to do |format|
-      format.html { redirect_to musics_url }
-      format.json { head :no_content }
-    end
+    redirect_to user_musics_path
   end
 
   private

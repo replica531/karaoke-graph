@@ -1,0 +1,21 @@
+= form_for @result, url: user_music_results_path do |f|
+  - if @result.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@result.errors.count, "error")} prohibited this result from being saved:"
+      %ul
+        - @result.errors.full_messages.each do |message|
+          %li= message
+  .row
+    .col-md-3.col-form-label 得点
+    .col-md-9= f.number_field :point, value: 80, min: 0, max: 100, class: 'form-control'
+  .row
+    .col-md-3.col-form-label メモ
+    .col-md-9= f.text_area :memo, class: 'form-control'
+  .row
+    .col-md-3.col-form-label 歌唱日時
+    .col-md-4= f.date_field :datetime, class: 'form-control'
+    .col-md-4= f.time_field :datetime, class: 'form-control'
+  .row
+    .col-md-9= f.hidden_field :music_id, value: params[:music_id], class: 'form-control'
+  .actions
+    = f.submit nil, class: 'btn btn-primary w-100'

@@ -1,0 +1,15 @@
+%p#notice= notice
+.row.text-center
+  %p
+    %b 得点:
+    = @result.point
+  %p
+    %b メモ:
+    = @result.memo
+  %p
+    %b 歌唱日:
+    = @result.datetime
+
+= link_to 'Edit', edit_user_music_result_path(@result)
+\|
+= link_to 'Back', user_music_results_path
