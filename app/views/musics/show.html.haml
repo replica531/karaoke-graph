@@ -1,4 +1,6 @@
 %p#notice= notice
+- breadcrumb :music, @music
+= breadcrumbs separator: " &rsaquo; "
 .row.text-center
   %p
     %b 曲名:
@@ -6,17 +8,8 @@
   %p
     %b アーティスト:
     = @music.artist
-  %p
-    %b ユーザーID:
-    = @music.user_id
-  %p
-    %strong 登録日時:
-    = @music.created_at.strftime("%Y-%m-%d %H:%M:%S")
-  %p
-    %strong 更新日時:
-    = @music.updated_at.strftime("%Y-%m-%d %H:%M:%S")
 
-= link_to '得点', user_music_results_path(music_id: @music.id)
+= link_to '得点', user_music_results_path(music_id: @music.id), class: 'btn btn-primary w-100'
 
 = link_to '編集', edit_user_music_path(@music)
 \|

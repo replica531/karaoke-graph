@@ -1,5 +1,7 @@
 - provide(:title, "Sign up")
 - provide(:button_text, 'アカウント登録')
-%h1 アカウント登録
+- breadcrumb :user_new
+= breadcrumbs separator: " &rsaquo; "
+%h1.text-center アカウント登録
 = render 'form', user: @user
 = link_to 'Back', users_path

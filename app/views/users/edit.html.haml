@@ -1,6 +1,8 @@
 - provide(:title, "Edit User")
 - provide(:button_text, '更新')
-%h1 ユーザー情報更新
+- breadcrumb :user_edit, @user
+= breadcrumbs separator: " &rsaquo; "
+%h1.text_center ユーザー情報更新
 = render 'form', user: @user
 = link_to '詳細', @user
 |

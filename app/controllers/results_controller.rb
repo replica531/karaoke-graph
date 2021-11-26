@@ -42,7 +42,7 @@ class ResultsController < ApplicationController
 
   private
     def set_result
-      @result = result.find(params[:id])
+      @result = Result.find(params[:id])
     end
 
     def result_params

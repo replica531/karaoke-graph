@@ -1,4 +1,6 @@
 %p#notice= notice
+- breadcrumb :users
+= breadcrumbs separator: " &rsaquo; "
 %h1.text-center ユーザー一覧
 
 = will_paginate
@@ -24,4 +26,3 @@
 %br/
 = link_to 'ユーザー登録', new_user_path, class: 'btn btn-outline-primary w-100'
 
-= link_to '曲一覧', musics_path
