@@ -2,19 +2,9 @@
 - breadcrumb :user, @user
 = breadcrumbs separator: " &rsaquo; "
 %p#notice= notice
-.row.text-center
-  %p
-    %strong 名前:
-    = @user.name
-  %p
-    %strong Email:
-    = @user.email
-  %p
-    %strong 登録日時:
-    = @user.created_at.strftime("%Y-%m-%d %H:%M:%S")
-  %p
-    %strong 更新日時:
-    = @user.updated_at.strftime("%Y-%m-%d %H:%M:%S")
-= link_to '編集', edit_user_path(@user)
-|
-= link_to '登録曲一覧', user_musics_path(@user)
+%h1.text-center #{@user.name}のプロフィール
+
+.row
+  = button_to user_musics_path(@user), method: :get, class: 'btn btn-lg btn-primary w-100 home-lg-btn' do
+    %i.bi.bi-chat-left-quote
+    登録曲一覧

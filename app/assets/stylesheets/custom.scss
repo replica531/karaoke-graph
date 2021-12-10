@@ -21,9 +21,9 @@ body {
 //   overflow: auto;
 // }
 
-// textarea {
-//   resize: vertical;
-// }
+textarea {
+  resize: vertical;
+}
 
 // .center {
 //   text-align: center;
@@ -78,31 +78,17 @@ body {
 
 /* footer */
 
-// #footer {
-//   margin-top: 45px;
-//   padding-top: 5px;
-//   border-top: 1px solid $gray-medium-light;
-//   color: $gray-medium-light;
-//   position: absolute;/*←絶対位置*/
-//   bottom: 0; /*下に固定*/
-//   left: 0;
-//   width: 100%;
-//   height: 30px;
-//   a {
-//     color: $gray-medium-light;
-//     &:hover {
-//       color: $gray-medium-light;
-//     }
-//   }
-//   ul {
-//     float: right;
-//     list-style: none;
-//     li {
-//       float: left;
-//       margin-left: 15px;
-//     }
-//   }
-// }
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid gray;
+  color: gray;
+  position: absolute;/*←絶対位置*/
+  bottom: 0; /*下に固定*/
+  left: 0;
+  width: 100%;
+  height: 30px;
+}
 
 // /* miscellaneous */
 

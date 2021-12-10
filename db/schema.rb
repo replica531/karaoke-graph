@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_20_184644) do
+ActiveRecord::Schema.define(version: 2021_12_10_191425) do
 
   create_table "musics", force: :cascade do |t|
     t.string "title"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_184644) do
   end
 
   create_table "results", force: :cascade do |t|
-    t.float "point"
+    t.float "score"
     t.text "memo"
     t.datetime "datetime"
     t.integer "music_id", null: false

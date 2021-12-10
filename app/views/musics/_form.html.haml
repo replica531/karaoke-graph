@@ -11,5 +11,8 @@
   .row
     .col-md-3.col-form-label アーティスト
     .col-md-9= f.text_field :artist, class: 'form-control'
+    %datalist#artists
+    - @artists.each do |artist|
+      %option{value: artist}
   .actions
     = f.submit nil, class: 'btn btn-primary w-100'

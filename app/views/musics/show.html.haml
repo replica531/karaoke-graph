@@ -8,6 +8,9 @@
   %p
     %b アーティスト:
     = @music.artist
+  %p
+    %b 平均点:
+    = @music.average_score
 
 = link_to '得点', user_music_results_path(music_id: @music.id), class: 'btn btn-primary w-100'
 

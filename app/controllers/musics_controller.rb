@@ -10,6 +10,7 @@ class MusicsController < ApplicationController
 
   def new
     @music = Music.new
+    @artists = current_user.musics.pluck(:artist).uniq
   end
 
   def edit

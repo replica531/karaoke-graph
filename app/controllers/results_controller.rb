@@ -46,6 +46,6 @@ class ResultsController < ApplicationController
     end
 
     def result_params
-      params.require(:result).permit(:point, :memo, :datetime, :music_id)
+      params.require(:result).permit(:score, :memo, :datetime, :music_id)
     end
 end
