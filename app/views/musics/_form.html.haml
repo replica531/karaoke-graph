@@ -15,5 +15,5 @@
       %datalist#artists
         - @artists.each do |artist|
           %option{value: artist}
-  .actions
+  .actions.pt-3
     = f.submit yield(:button_text), class: 'btn btn-primary w-100'

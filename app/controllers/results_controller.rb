@@ -3,7 +3,7 @@ class ResultsController < ApplicationController
 
   def index
     @music = Music.find(params[:music_id])
-    @results = Result.where(music_id: params[:music_id]).all
+    @results = @music.results.all.order(datetime: "DESC")
   end
 
   def show
