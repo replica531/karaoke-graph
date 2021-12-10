@@ -7,10 +7,10 @@ class Music < ApplicationRecord
 
   def average_score
     return 0 if self.results.count == 0
-    sum = 0
+    score_sum = 0
     self.results.each do |result|
-      sum += result.score
+      score_sum += result.score
     end
-    sum / self.results.count
+    (score_sum / self.results.count).round(3)
   end
 end

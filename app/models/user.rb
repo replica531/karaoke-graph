@@ -69,6 +69,26 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  def results_count
+    sum = 0
+    self.musics.each do |music|
+      sum += music.results.count
+    end
+    sum
+  end
+
+  def average_score
+    score_sum = 0
+    result_sum = 0
+    self.musics.each do |music|
+      music.results.each do |result|
+        score_sum += result.score
+        result_sum += 1
+      end
+    end
+    (score_sum / result_sum).round(3)
+  end
+
   private
 
     def downcase_email

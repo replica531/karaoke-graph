@@ -3,7 +3,7 @@ class MusicsController < ApplicationController
   before_action :set_artists, only: [:new, :create, :edit, :update]
 
   def index
-    @musics = current_user.musics.all
+    @musics = current_user.musics.all.order(:artist).order(:title)
   end
 
   def show

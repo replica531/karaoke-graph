@@ -3,6 +3,11 @@
 = breadcrumbs separator: " &rsaquo; "
 %p#notice= notice
 %h1.text-center #{@user.name}のプロフィール
+%h3.text-center 登録曲数: #{@user.musics.count}
+%h3.text-center 歌唱数: #{@user.results_count}
+%h3.text-center 平均点: #{@user.average_score}
+
+= bar_chart @user.musics.group(:artist).count
 
 .row
   = button_to user_musics_path(@user), method: :get, class: 'btn btn-lg btn-primary w-100 home-lg-btn' do
