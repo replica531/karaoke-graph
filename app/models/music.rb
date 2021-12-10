@@ -6,6 +6,7 @@ class Music < ApplicationRecord
   has_many :results, dependent: :destroy
 
   def average_score
+    return 0 if self.results.count == 0
     sum = 0
     self.results.each do |result|
       sum += result.score

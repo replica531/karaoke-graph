@@ -11,6 +11,7 @@ class ResultsController < ApplicationController
 
   def new
     @result = Result.new
+    @result.datetime = Time.now.strftime("%Y%m%dT%H%M").to_time
   end
 
   def edit

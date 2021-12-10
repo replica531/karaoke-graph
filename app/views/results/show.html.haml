@@ -9,8 +9,8 @@
     %b メモ:
     = @result.memo
   %p
-    %b 歌唱日:
-    = @result.datetime
+    %b 歌唱日時:
+    = @result.datetime.strftime("%F %H:%M")
 
 = link_to 'Edit', edit_user_music_result_path(@result)
 \|

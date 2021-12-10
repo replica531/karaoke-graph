@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  def ensure_current_user
+    if @current_user.id != params[:id].to_i
+      flash[:notice]="権限がありません"
+      redirect_to("/posts/index")
+    end
+  end
 end

@@ -7,7 +7,7 @@
     %tr
       %th 得点
       %th メモ
-      %th 歌唱日
+      %th 歌唱日時
       %th
 
   %tbody
@@ -15,7 +15,7 @@
       %tr
         %td= result.score
         %td= result.memo
-        %td= result.datetime
+        %td= result.datetime.strftime("%F %H:%M")
         %td
           = link_to '詳細', user_music_result_path(id: result.id), class: 'btn btn-sm btn-outline-primary'
           = link_to '編集', edit_user_music_result_path(id: result.id), class: 'btn btn-sm btn-outline-primary'
