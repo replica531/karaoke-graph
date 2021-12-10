@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_12_10_191425) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "musics", force: :cascade do |t|
     t.string "title"
     t.string "artist"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_191425) do
     t.float "score"
     t.text "memo"
     t.datetime "datetime"
-    t.integer "music_id", null: false
+    t.bigint "music_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["music_id", "created_at"], name: "index_results_on_music_id_and_created_at"

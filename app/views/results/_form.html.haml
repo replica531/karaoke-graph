@@ -7,14 +7,13 @@
           %li= message
   .row
     .col-md-3.col-form-label 得点
-    .col-md-9= f.number_field :score, value: 80, min: 0, max: 100, class: 'form-control'
+    .col-md-9= f.number_field :score, value: 80, min: 0, max: 100, step: "0.1", class: 'form-control'
   .row
     .col-md-3.col-form-label メモ
     .col-md-9= f.text_area :memo, class: 'form-control'
   .row
     .col-md-3.col-form-label 歌唱日時
-    .col-md-4= f.date_field :datetime, class: 'form-control'
-    .col-md-4= f.time_field :datetime, class: 'form-control'
+    .col-md-9= f.datetime_field :datetime, class: 'form-control'
   .row
     .col-md-9= f.hidden_field :music_id, value: params[:music_id], class: 'form-control'
   .actions.pt-3
