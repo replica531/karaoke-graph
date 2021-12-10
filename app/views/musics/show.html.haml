@@ -12,7 +12,7 @@
     %b 平均点:
     = @music.average_score
 = line_chart @music.results.group_by_minute(:datetime, series:false, format: "%F %H:%M").maximum(:score), xtitle: "歌唱日時", ytitle: "Score", min: 50, max: 100, curve: false, discrete: true
-= link_to '得点', user_music_results_path(music_id: @music.id), class: 'btn btn-primary w-100'
+= link_to '得点', user_music_results_path(music_id: @music.id), class: 'btn btn-outline-primary w-100'
 
 = link_to '編集', edit_user_music_path(@music)
 \|

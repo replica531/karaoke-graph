@@ -1,5 +1,6 @@
 class MusicsController < ApplicationController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
+  before_action :set_artists, only: [:new, :create, :edit, :update]
 
   def index
     @musics = current_user.musics.all
@@ -10,7 +11,6 @@ class MusicsController < ApplicationController
 
   def new
     @music = Music.new
-    @artists = current_user.musics.pluck(:artist).uniq
   end
 
   def edit
@@ -44,6 +44,10 @@ class MusicsController < ApplicationController
   private
     def set_music
       @music = Music.find(params[:id])
+    end
+
+    def set_artists
+      @artists = current_user.musics.pluck(:artist).uniq
     end
 
     def music_params

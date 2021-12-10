@@ -10,9 +10,10 @@
     .col-md-9= f.text_field :title, class: 'form-control'
   .row
     .col-md-3.col-form-label アーティスト
-    .col-md-9= f.text_field :artist, class: 'form-control'
-    %datalist#artists
-    - @artists.each do |artist|
-      %option{value: artist}
+    .col-md-9
+      = f.text_field :artist, list: 'artists', class: 'form-control'
+      %datalist#artists
+        - @artists.each do |artist|
+          %option{value: artist}
   .actions
     = f.submit "曲登録", class: 'btn btn-primary w-100'

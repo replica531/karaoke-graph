@@ -13,7 +13,7 @@
     .col-md-9= f.text_area :memo, class: 'form-control'
   .row
     .col-md-3.col-form-label 歌唱日時
-    .col-md-9= f.datetime_field :datetime, class: 'form-control'
+    .col-md-9= f.datetime_select :datetime, use_month_numbers: true, class: 'form-control'
   .row
     .col-md-9= f.hidden_field :music_id, value: params[:music_id], class: 'form-control'
   .actions.pt-3
