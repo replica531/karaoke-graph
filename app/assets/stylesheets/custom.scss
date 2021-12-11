@@ -14,7 +14,11 @@
 /* universal */
 
 body {
+  min-height: 100vh;
+  position: relative;
   padding-top: 100px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
 }
 
 // section {
@@ -80,7 +84,6 @@ textarea {
 
 footer {
   margin-top: 45px;
-  padding-top: 5px;
   border-top: 1px solid gray;
   color: gray;
   position: absolute;/*←絶対位置*/
