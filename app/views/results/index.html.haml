@@ -11,6 +11,8 @@
       %th
 
   %tbody
+    %tr
+      %td{colspan:4}= link_to '得点記録', new_user_music_result_path, class: 'btn btn-outline-primary w-100'
     - @results.each do |result|
       %tr
         %td= result.score
@@ -20,7 +22,3 @@
           = link_to '詳細', user_music_result_path(id: result.id), class: 'btn btn-sm btn-outline-primary'
           = link_to '編集', edit_user_music_result_path(id: result.id), class: 'btn btn-sm btn-outline-primary'
           = link_to '削除', user_music_result_path(id: result.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-outline-danger'
-
-%br
-
-= link_to '得点記録', new_user_music_result_path, class: 'btn btn-outline-primary w-100'
