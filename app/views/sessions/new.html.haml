@@ -6,13 +6,12 @@
   .row.mb-3
     .col-md-3.col-form-label パスワード
     .col-md-9= f.password_field :password, class: 'form-control'
-    = link_to "(forgot password)", password_resets_new_path
-  .row.mb-3
+    .mt-2= link_to "パスワードを忘れた方", password_resets_new_path
+  .row.mb-3.ms-4
     .col-md-3.col-form-label
       = f.label :remember_me, class: "checkbox inline" do
         = f.check_box :remember_me
-      %span Remember me on this computer
-  = f.submit "ログイン", class: "btn btn-primary"
-%p
-  新規登録 #{link_to "Sign up now!", signup_path}
-= link_to '戻る', root_path
+      %p ログインを記憶する
+  = f.submit "ログイン", class: "btn btn-primary text-white w-100"
+.row.mt-3
+  =link_to "新規登録", signup_path

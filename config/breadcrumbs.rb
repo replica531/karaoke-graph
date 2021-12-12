@@ -57,9 +57,9 @@ end
 
 crumb :result do |result|
   if params[:controller] == 'results'
-    link result.datetime, user_music_result_path(id: params[:id])
+    link result.datetime.strftime("%F %H:%M"), user_music_result_path(id: params[:id])
   else
-    link Result.find(params[:result_id]).datetime, user_music_result_path(id: params[:result_id])
+    link Result.find(params[:result_id]).datetime.strftime("%F %H:%M"), user_music_result_path(id: params[:result_id])
   end
   parent :results, user_music_path(id: params[:music_id])
 end

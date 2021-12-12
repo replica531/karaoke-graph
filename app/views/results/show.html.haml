@@ -11,7 +11,6 @@
   %p
     %b 歌唱日時:
     = @result.datetime.strftime("%F %H:%M")
-
-= link_to '編集', edit_user_music_result_path(@result)
-\|
-= link_to '戻る', user_music_results_path
+.row
+  .col-6= link_to '編集', edit_user_music_result_path(id: @result.id), class: 'btn btn-sm btn-primary text-white w-100'
+  .col-6= link_to '削除', user_music_result_path(id: @result.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-outline-danger w-100'
