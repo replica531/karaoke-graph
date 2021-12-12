@@ -86,6 +86,7 @@ class User < ApplicationRecord
         result_sum += 1
       end
     end
+    return 0 if result_sum == 0
     (score_sum / result_sum).round(3)
   end
 

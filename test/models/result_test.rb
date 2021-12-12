@@ -3,7 +3,7 @@ require 'test_helper'
 class ResultTest < ActiveSupport::TestCase
   def setup
     @music = musics(:one)
-    @result = @music.results.new(point: 85.3, memo: "hoge", datetime:Time.now)
+    @result = @music.results.new(score: 85.3, memo: "hoge", datetime:Time.now)
   end
 
   test "should be valid" do
