@@ -1,7 +1,10 @@
 %header
   %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
     .container-fluid
-      %a.navbar-brand#logo{:href => root_path} Karaoke Graph
+      %a.navbar-brand#logo{:href => root_path}
+        %i.bi.bi-music-note
+        Karaoke Graph
+        %i.bi.bi-music-note
       %button.navbar-toggler{"aria-controls" => "navbarNavDarkDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDarkDropdown", "data-bs-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
       #navbarNavDarkDropdown.collapse.navbar-collapse
@@ -9,6 +12,7 @@
           - if logged_in?
             %li.nav-item.dropdown
               %a#navbarDarkDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+                %i.bi.bi-person-circle
                 アカウント
               %ul.dropdown-menu.dropdown-menu-dark{"aria-labelledby" => "navbarDarkDropdownMenuLink"}
                 %li.mt-3
@@ -16,11 +20,15 @@
                     %h5.text-center プロフィール
                 %li.mt-3
                   %a.dropdown-item{:href => edit_user_path(current_user)}
-                    %h5.text-center 設定
+                    %h5.text-center
+                      %i.bi.bi-gear-fill
+                      設定
                 %li.dropdown-divider
                 %li.dropdown-item
                   %a.dropdown-item{:href => logout_path, "data-method" => "delete"}
-                    %h5.text-center ログアウト
+                    %h5.text-center
+                      %i.bi.bi-box-arrow-left
+                      ログアウト
           - else
             %li.nav-item
               .btn.btn-lg= link_to '登録', signup_path, class: 'nav-link text-white'

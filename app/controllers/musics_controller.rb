@@ -7,8 +7,21 @@ class MusicsController < ApplicationController
   end
 
   def show
-    @max_score = @music.results.max_by(&:score).score
-    @min_score = @music.results.min_by(&:score).score
+    @results = @music.results.order(datetime: "DESC").limit(10).reverse
+    @results.each do |result|
+      result.datetime.strftime("F")
+    end
+    #グラフの縦の範囲を決める
+    @y_min = 101
+    @y_max = -1
+    if @music.results.present?
+      @results.each do |result|
+        @y_min = [@y_min, result.score - 5].min
+        @y_max = [@y_max, result.score + 5].max
+      end
+    end
+    @y_min = [0, @y_min].max
+    @y_max = [100, @y_max].min
   end
 
   def new

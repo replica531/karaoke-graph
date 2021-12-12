@@ -11,7 +11,8 @@
   %p
     %b 平均点:
     = @music.average_score
-= line_chart @music.results.group_by_minute(:datetime, series:false, format: "%F %H:%M").maximum(:score), xtitle: "歌唱日時", ytitle: "Score", min: [0, @min_score - 5].max, max: [100, @max_score + 5].min, curve: false, discrete: true
+= line_chart @results.map{|r|[r[:datetime].strftime("%F %H:%M"),r[:score]]}, xtitle: "歌唱日時", ytitle: "Score", min: @y_min, max: @y_max, curve: false, discrete: true
+-# = line_chart @results.group_by_minute(:datetime, series:false, format: "%F %H:%M").maximum(:score), xtitle: "歌唱日時", ytitle: "Score", min: 60, max: 100, curve: false, discrete: true
 = link_to '記録一覧', user_music_results_path(music_id: @music.id), class: 'btn btn-outline-primary w-100'
 
 = link_to '編集', edit_user_music_path(@music)

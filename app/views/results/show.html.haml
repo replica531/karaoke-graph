@@ -1,13 +1,13 @@
 %p#notice= notice
 - breadcrumb :result, @result
 = breadcrumbs separator: " &rsaquo; "
-.row.text-center
-  %p
+.row
+  %p.mt-3
     %b 得点:
     = @result.score
   %p
     %b メモ:
-    = @result.memo
+    = simple_format @result.memo
   %p
     %b 歌唱日時:
     = @result.datetime.strftime("%F %H:%M")
