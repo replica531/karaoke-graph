@@ -1,6 +1,6 @@
 - breadcrumb :results
 = breadcrumbs separator: " &rsaquo; "
-%h1.text-center #{@music.title} (#{@music.artist})
+%h1.text-center.title #{@music.title} (#{@music.artist})
 
 %table.table
   %thead.table-light
@@ -12,7 +12,7 @@
 
   %tbody
     %tr
-      %td{colspan:4}= link_to '得点記録', new_user_music_result_path, class: 'btn btn-outline-primary w-100'
+      %td{colspan:4}= link_to '得点記録', new_user_music_result_path, class: 'btn btn-primary text-white w-100'
     - @results.each do |result|
       %tr
         %td= result.score

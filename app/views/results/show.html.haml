@@ -1,16 +1,13 @@
 %p#notice= notice
 - breadcrumb :result, @result
 = breadcrumbs separator: " &rsaquo; "
-.row
-  %p.mt-3
-    %b 得点:
-    = @result.score
-  %p
-    %b メモ:
+%h1.text-center.title #{@result.music.title}
+%h3.text-center 得点: #{@result.score}
+.container.mx-auto.text-center
+  %h3.text-center メモ:
+  %h3.d-inline-block.text-left
     = simple_format @result.memo
-  %p
-    %b 歌唱日時:
-    = @result.datetime.strftime("%F %H:%M")
+%h3.text-center 歌唱日時: #{@result.datetime.strftime("%F %H:%M")}
 .row
   .col-6= link_to '編集', edit_user_music_result_path(id: @result.id), class: 'btn btn-sm btn-primary text-white w-100'
-  .col-6= link_to '削除', user_music_result_path(id: @result.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-outline-danger w-100'
+  .col-6= link_to '削除', user_music_result_path(id: @result.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-danger text-white w-100'
