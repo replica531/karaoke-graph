@@ -42,6 +42,12 @@ body {
   box-sizing: border-box;
 }
 
+.hover:hover {
+  display: inline-block;
+  transform: scale(1.2);
+  background-color: white;
+}
+
 // section {
 //   overflow: auto;
 // }

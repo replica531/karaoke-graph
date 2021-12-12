@@ -5,20 +5,20 @@
       %button.navbar-toggler{"aria-controls" => "navbarNavDarkDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDarkDropdown", "data-bs-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
       #navbarNavDarkDropdown.collapse.navbar-collapse
-        %ul.navbar-nav.mx-auto.me-md-0
+        %ul.navbar-nav.mx-auto.me-md-3
           - if logged_in?
             %li.nav-item.dropdown
               %a#navbarDarkDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
                 アカウント
               %ul.dropdown-menu.dropdown-menu-dark{"aria-labelledby" => "navbarDarkDropdownMenuLink"}
-                %li
+                %li.mt-3
                   %a.dropdown-item{:href => user_path(current_user)}
                     %h5.text-center プロフィール
-                %li
+                %li.mt-3
                   %a.dropdown-item{:href => edit_user_path(current_user)}
                     %h5.text-center 設定
                 %li.dropdown-divider
-                %li.dropdown-item.text-danger
+                %li.dropdown-item
                   %a.dropdown-item{:href => logout_path, "data-method" => "delete"}
                     %h5.text-center ログアウト
           - else

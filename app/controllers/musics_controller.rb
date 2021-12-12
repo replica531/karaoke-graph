@@ -7,6 +7,8 @@ class MusicsController < ApplicationController
   end
 
   def show
+    @max_score = @music.results.max_by(&:score).score
+    @min_score = @music.results.min_by(&:score).score
   end
 
   def new

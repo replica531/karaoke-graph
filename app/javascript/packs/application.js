@@ -6,3 +6,4 @@ require("jquery")
 import "bootstrap";
 import "../stylesheets/application";
 import "chartkick/chart.js";
+import 'bootstrap-icons/font/bootstrap-icons.css'

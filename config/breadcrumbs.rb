@@ -1,5 +1,5 @@
 crumb :root do
-  link "Home", root_path
+  link "ホーム", root_path
 end
 
 crumb :users do
@@ -9,9 +9,9 @@ end
 
 crumb :user do |user|
   if params[:controller] == 'users'
-    link "Profile", user_path(id: params[:id])
+    link "プロフィール", user_path(id: params[:id])
   else
-    link "Profile", user_path(id: params[:user_id])
+    link "プロフィール", user_path(id: params[:user_id])
   end
   parent :root
 end
