@@ -79,10 +79,23 @@ h1, h2, h3, h4, h5, h6 {
 
 // /* header */
 
+header {
+  ul {
+    margin: 0 0 0 auto;
+  }
+  @include sp {
+    ul {
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+}
+
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 2.7em;
   color: red;
   text-transform: uppercase;
   letter-spacing: -1px;
@@ -92,8 +105,9 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
     text-decoration: none;
   }
-  @include sp{
-    color: blue;
+  @include sp {
+    margin: 0 auto;
+    font-size: 2.7em;
   }
 }
 
@@ -108,6 +122,11 @@ footer {
   left: 0;
   width: 100%;
   height: 30px;
+  .ul{
+    @include sp {
+      margin:auto;
+    }
+  }
 }
 
 // /* miscellaneous */
