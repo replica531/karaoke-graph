@@ -2,5 +2,7 @@
 - provide(:button_text, '更新')
 - breadcrumb :user_edit, @user
 = breadcrumbs separator: " &rsaquo; "
-%h1.text_center.title ユーザー情報更新
+.row
+  %h1.col-11.text_center.title ユーザー情報更新
+  .col-1= link_to '退会', @user, method: :delete, data: { confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-sm btn-danger text-white'
 = render 'form', user: @user
