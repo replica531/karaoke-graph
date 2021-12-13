@@ -1,6 +1,7 @@
+- provide(:title, "Music")
 %p#notice= notice
 - breadcrumb :music, @music
-= breadcrumbs separator: " &rsaquo; "
+%h5= breadcrumbs separator: " &rsaquo; "
 %h1.text-center.title #{@music.title}
 %h3.text-center アーティスト: #{@music.artist}
 %h3.text-center 平均点: #{@music.average_score}

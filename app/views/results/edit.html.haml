@@ -1,6 +1,6 @@
-- provide(:button_text, '更新')
+- provide(:title, "Result")
 - breadcrumb :result_edit, @result
-= breadcrumbs separator: " &rsaquo; "
+%h5= breadcrumbs separator: " &rsaquo; "
 %h1.text-center.title 記録編集
 = form_with model: @result, url: user_music_result_path(@result) do |f|
   - if @result.errors.any?
@@ -21,4 +21,4 @@
   .row
     .col-md-9= f.hidden_field :music_id, value: params[:music_id], class: 'form-control'
   .actions.pt-3
-    = f.submit yield(:button_text), class: 'btn btn-primary text-white w-100'
+    = f.submit '更新', class: 'btn btn-primary text-white w-100'

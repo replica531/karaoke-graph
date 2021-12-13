@@ -2,6 +2,18 @@ crumb :root do
   link "ホーム", root_path
 end
 
+crumb :help do
+  link "Help", help_path
+end
+
+crumb :about do
+  link "About", about_path
+end
+
+crumb :contact do
+  link "Contact", contact_path
+end
+
 crumb :users do
   link "ユーザー一覧", users_path
   parent :root

@@ -1,6 +1,6 @@
-- provide(:title, @user.name)
+- provide(:title, "Profile")
 - breadcrumb :user, @user
-= breadcrumbs separator: " &rsaquo; "
+%h5= breadcrumbs separator: " &rsaquo; "
 %p#notice= notice
 %h1.text-center.title #{@user.name}のプロフィール
 %h3.text-center 登録曲数: #{@user.musics.count}

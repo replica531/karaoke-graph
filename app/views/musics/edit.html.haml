@@ -1,6 +1,6 @@
-- provide(:button_text, '更新')
+- provide(:title, "Music")
 - breadcrumb :music_edit, @music
-= breadcrumbs separator: " &rsaquo; "
+%h5= breadcrumbs separator: " &rsaquo; "
 %h1.title 曲情報編集
 = form_with model: @music, url: user_music_path(@music) do |f|
   - if @music.errors.any?
@@ -20,5 +20,5 @@
         - @artists.each do |artist|
           %option{value: artist}
   .actions.pt-3
-    = f.submit yield(:button_text), class: 'btn btn-primary text-white w-100'
+    = f.submit '更新', class: 'btn btn-primary text-white w-100'
 
