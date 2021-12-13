@@ -66,6 +66,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
   host = 'https://karaoke-graph.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
@@ -73,7 +74,7 @@ Rails.application.configure do
     :port           => '587',
     :authentication => :plain,
     :user_name      => 'apikey',
-    :password       => ENV['SENDGRID_APIKEY'],
+    :password       => ENV['SENDGRID_API_KEY'],
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
