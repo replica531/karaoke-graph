@@ -69,14 +69,14 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   host = 'https://karaoke-graph.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
-  ActionMailer::Base.smtp_settings = {
-    address:              'smtp.sendgrid.net',
-    user_name:            'apikey',
-    password:             ENV['SENDGRID_API_KEY'],
-    authentication:       :plain,
-    domain:               'herokuapp.com',
-    port:                 '587',
-    enable_starttls_auto: true,
+  config.action_mailer.smtp_settings = {
+    :user_name      => 'apikey',
+    :password       => ENV['SENDGRID_API_KEY'],
+    :domain => 'herokuapp.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
