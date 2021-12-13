@@ -2,5 +2,23 @@
 - breadcrumb :music_edit, @music
 = breadcrumbs separator: " &rsaquo; "
 %h1.title 曲情報編集
+= form_with model: @music, url: user_music_path(@music) do |f|
+  - if @music.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@music.errors.count, "error")} prohibited this music from being saved:"
+      %ul
+        - @music.errors.full_messages.each do |message|
+          %li= message
+  .row
+    .col-md-3.col-form-label 曲名
+    .col-md-9= f.text_field :title, class: 'form-control'
+  .row.mt-3
+    .col-md-3.col-form-label アーティスト
+    .col-md-9
+      = f.text_field :artist, list: 'artists', class: 'form-control'
+      %datalist#artists
+        - @artists.each do |artist|
+          %option{value: artist}
+  .actions.pt-3
+    = f.submit yield(:button_text), class: 'btn btn-primary text-white w-100'
 
-= render 'form'

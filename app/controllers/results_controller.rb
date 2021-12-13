@@ -10,11 +10,13 @@ class ResultsController < ApplicationController
   end
 
   def new
+    @score_value = 80
     @result = Result.new
     @result.datetime = Time.now.strftime("%Y%m%dT%H%M").to_time
   end
 
   def edit
+    @score_value = @result.score
   end
 
   def create
@@ -27,12 +29,10 @@ class ResultsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @result.update(result_params)
-        redirect_to user_music_results_path
-      else
-        render :edit
-      end
+    if @result.update(result_params)
+      redirect_to user_music_result_path(@result)
+    else
+      render :edit
     end
   end
 

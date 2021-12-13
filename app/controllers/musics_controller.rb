@@ -42,12 +42,10 @@ class MusicsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @music.update(music_params)
-        redirect_to user_musics_path
-      else
-        render :edit
-      end
+    if @music.update(music_params)
+      redirect_to user_music_path(@music)
+    else
+      render :edit
     end
   end
 
