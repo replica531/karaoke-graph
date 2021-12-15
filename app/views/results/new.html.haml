@@ -20,5 +20,7 @@
     .col-md-9= f.datetime_select :datetime, use_month_numbers: true, class: 'form-select'
   .row
     .col-md-9= f.hidden_field :music_id, value: params[:music_id], class: 'form-control'
+  .row
+    .col-md-9= f.hidden_field :user_id, value: params[:user_id], class: 'form-control'
   .actions.pt-3
     = f.submit '記録', class: 'btn btn-primary text-white w-100'
