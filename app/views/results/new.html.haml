@@ -17,7 +17,7 @@
     .col-md-9= f.text_area :memo, rows: "10", class: 'form-control'
   .row.mt-3
     .col-md-3.col-form-label 歌唱日時
-    .col-md-9= f.datetime_select :datetime, use_month_numbers: true, class: 'form-select'
+    .col-md-9.d-flex= f.datetime_select :datetime, {use_month_numbers: true}, {class: 'form-select'}
   .row
     .col-md-9= f.hidden_field :music_id, value: params[:music_id], class: 'form-control'
   .row
