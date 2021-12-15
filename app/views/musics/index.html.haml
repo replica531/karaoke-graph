@@ -18,7 +18,7 @@
       %tr
         %td= music.title
         %td= music.artist
-        %td= music.results.count
+        %td= music.results.length
         %td= music.average_score
         %td
           .mb-1= link_to '得点記録', new_user_music_result_path(music_id: music), class: 'btn btn-md btn-info text-dark w-100'

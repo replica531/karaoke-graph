@@ -72,22 +72,21 @@ class User < ApplicationRecord
   def results_count
     sum = 0
     self.musics.each do |music|
-      sum += music.results.count
+      sum += music.results.length
     end
     sum
   end
 
   def average_score
     score_sum = 0
-    result_sum = 0
+    results_count = self.results_count
+    return 0 if results_count == 0
     self.musics.each do |music|
       music.results.each do |result|
         score_sum += result.score
-        result_sum += 1
       end
     end
-    return 0 if result_sum == 0
-    (score_sum / result_sum).round(3)
+    (score_sum / results_count).round(3)
   end
 
   private
