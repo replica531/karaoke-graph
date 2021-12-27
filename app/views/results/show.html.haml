@@ -6,7 +6,7 @@
 %h3.text-center.mt-3 機種: #{@result.model}
 %h3.text-center 得点: #{@result.score}
 .container.mx-auto.text-center
-  %h3.text-center メモ:
+  %h3.text-center メモ
   %h3.d-inline-block.text-left
     = simple_format @result.memo
 %h3.text-center 歌唱日時: #{@result.datetime.strftime("%F %H:%M")}

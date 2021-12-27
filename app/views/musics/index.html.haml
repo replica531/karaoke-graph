@@ -8,16 +8,18 @@
     %tr
       %th 曲名
       %th アーティスト
+      %th メモ
       %th 歌唱回数
       %th 平均点
       %th
   %tbody
     %tr
-      %td{colspan:5}= link_to '曲登録', new_user_music_path, class: 'btn btn-primary text-white w-100'
+      %td{colspan:6}= link_to '曲登録', new_user_music_path, class: 'btn btn-primary text-white w-100'
     - @musics.each do |music|
       %tr
         %td= music.title
         %td= music.artist
+        %td= music.memo
         %td= music.results.length
         %td= music.average_score
         %td
