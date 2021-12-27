@@ -13,11 +13,12 @@ class SessionsController < ApplicationController
       else
         message  = "アカウントが有効化されていません"
         message += "メールに記載されている有効化のためのリンクをクリックしてください"
+        message += "(メールが届かない場合は迷惑メールフォルダもご確認ください)"
         flash[:warning] = message
         redirect_to root_url
       end
     else
-      flash.now[:danger] = 'Invalid email/password combination'
+      flash.now[:danger] = '無効なEメールとパスワードの組み合わせです'
       render 'new'
     end
   end
