@@ -2,9 +2,30 @@
 -breadcrumb :musics
 %h5= breadcrumbs separator: " &rsaquo; "
 %h1.text-center.title 曲一覧
-
+= form_tag user_musics_path, { method: 'GET', remote: false } do
+  %table.table
+    %thead.table-info
+      %tr
+        %th 曲名
+        %th アーティスト
+        %th 並び替え
+        %th
+    %tbody
+      %tr
+        %td
+          = text_field_tag :title, params[:title], list: 'titles', autocomplete: "off", class: 'form-control'
+          %datalist#titles
+            - @titles.each do |title|
+              %option{value: title}
+        %td
+          = text_field_tag :artist, params[:artist], list: 'artists', autocomplete: "off", class: 'form-control'
+          %datalist#artists
+            - @artists.each do |artist|
+              %option{value: artist}
+        %td= select_tag "sort", options_for_select(@sort, params[:sort]), include_blank: true, class:'form-control form-select'
+        %td= submit_tag '検索', class: 'btn-lg btn-primary w-100 d-block'
 %table.table
-  %thead.table-light
+  %thead.table-info
     %tr
       %th 曲名
       %th アーティスト

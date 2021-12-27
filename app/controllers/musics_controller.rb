@@ -1,9 +1,21 @@
 class MusicsController < ApplicationController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
-  before_action :set_artists, only: [:new, :create, :edit, :update]
+  before_action :set_artists, only: [:index, :new, :create, :edit, :update]
 
   def index
-    @musics = current_user.musics.all.order(:artist).order(:title)
+    @sort = {
+      "平均点": 'average_score',
+      "歌唱回数": 'results.length',
+    }
+    scope = current_user.musics.all.eager_load(:results).order(:artist).order(:title)
+    scope = scope.where('title LIKE ?', "%#{params[:title]}%") if params[:title].present?
+    scope = scope.where('artist LIKE ?', "%#{params[:artist]}%") if params[:artist].present?
+    if params[:sort].present?
+      scope = scope.sort_by{|s| s.average_score}.reverse if params[:sort] == 'average_score'
+      scope = scope.sort_by{|s| s.results.length}.reverse if params[:sort] == 'results.length'
+    end
+    @musics = scope
+    @titles = current_user.musics.pluck(:title).uniq
   end
 
   def show
