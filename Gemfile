@@ -19,6 +19,8 @@ gem 'pg', '1.1.4'
 
 group :development, :test do
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rubocop', require: false
+  gem 'solargraph', require: false
 end
 
 group :development do
