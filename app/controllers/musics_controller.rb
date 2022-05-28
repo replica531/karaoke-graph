@@ -16,9 +16,7 @@ class MusicsController < ApplicationController
       scope = scope.sort_by(&:average_score).reverse if params[:sort] == 'average_score'
       scope = scope.sort_by { |s| s.results.length }.reverse if params[:sort] == 'results.length'
     end
-    if params[:favorite]
-      scope = scope.where(favorite: true)
-    end
+    scope = scope.where(favorite: true) if params[:favorite]
     @musics = scope
     @titles = current_user.musics.pluck(:title).uniq
   end
