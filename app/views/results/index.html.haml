@@ -7,6 +7,7 @@
   %thead.table-info
     %tr
       %th 機種
+      %th キー
       %th 得点
       %th メモ
       %th 歌唱日時
@@ -14,10 +15,11 @@
 
   %tbody
     %tr
-      %td{colspan:5}= link_to '得点記録', new_user_music_result_path, class: 'btn btn-primary text-white w-100'
+      %td{colspan:6}= link_to '得点記録', new_user_music_result_path, class: 'btn btn-primary text-white w-100'
     - @results.each do |result|
       %tr
         %td= result.model
+        %td= result.key
         %td= result.score
         %td= result.memo
         %td= result.datetime.strftime("%F %H:%M")
