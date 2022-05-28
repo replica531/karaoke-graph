@@ -20,6 +20,9 @@
         - @artists.each do |artist|
           %option{value: artist}
   .row.mt-3
+    .col-md-3.col-form-label お気に入り
+    .col-md-9= f.check_box :favorite
+  .row.mt-3
     .col-md-3.col-form-label キー
     .col-md-9= f.number_field :key, value: 0, min: -12, max: 12, step: "1", autocomplete: "off", class: 'form-control'
   .row.mt-3

@@ -16,6 +16,7 @@ class MusicsController < ApplicationController
       scope = scope.sort_by(&:average_score).reverse if params[:sort] == 'average_score'
       scope = scope.sort_by { |s| s.results.length }.reverse if params[:sort] == 'results.length'
     end
+    scope = scope.where(favorite: true) if params[:favorite]
     @musics = scope
     @titles = current_user.musics.pluck(:title).uniq
   end
@@ -78,6 +79,6 @@ class MusicsController < ApplicationController
   end
 
   def music_params
-    params.require(:music).permit(:title, :artist, :key, :memo, :user_id)
+    params.require(:music).permit(:title, :artist, :key, :memo, :favorite, :user_id)
   end
 end

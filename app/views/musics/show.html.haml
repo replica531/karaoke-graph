@@ -2,7 +2,10 @@
 %p#notice= notice
 - breadcrumb :music, @music
 %h5= breadcrumbs separator: " &rsaquo; "
-%h1.text-center.title #{@music.title}
+%h1.text-center.title
+  -if @music.favorite
+    %i.bi.bi-star-fill
+  #{@music.title}
 %h3.text-center アーティスト: #{@music.artist}
 %h3.text-center キー: #{@music.key}
 .container.mx-auto.text-center
