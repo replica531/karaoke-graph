@@ -57,7 +57,7 @@ class MusicsController < ApplicationController
 
   def update
     if @music.update(music_params)
-      redirect_to user_music_path(@music)
+      redirect_to user_music_path(user_id:current_user, id: @music)
     else
       render :edit
     end
