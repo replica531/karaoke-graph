@@ -31,7 +31,7 @@ class ResultsController < ApplicationController
 
   def update
     if @result.update(result_params)
-      redirect_to user_music_result_path(@result)
+      redirect_to user_music_result_path(user_id: current_user, id:@result)
     else
       render :edit
     end
