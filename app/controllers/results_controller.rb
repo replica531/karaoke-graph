@@ -1,18 +1,19 @@
+# frozen_string_literal: true
+
 class ResultsController < ApplicationController
-  before_action :set_result, only: [:show, :edit, :update, :destroy]
+  before_action :set_result, only: %i[show edit update destroy]
 
   def index
     @music = Music.find(params[:music_id])
-    @results = @music.results.all.order(datetime: "DESC")
+    @results = @music.results.all.order(datetime: 'DESC')
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @score_value = 80
     @result = Result.new
-    @result.datetime = Time.now.strftime("%Y%m%dT%H%M").to_time
+    @result.datetime = Time.now.strftime('%Y%m%dT%H%M').to_time
   end
 
   def edit
@@ -42,11 +43,12 @@ class ResultsController < ApplicationController
   end
 
   private
-    def set_result
-      @result = Result.find(params[:id])
-    end
 
-    def result_params
-      params.require(:result).permit(:model, :key, :score, :memo, :datetime, :music_id, :user_id)
-    end
+  def set_result
+    @result = Result.find(params[:id])
+  end
+
+  def result_params
+    params.require(:result).permit(:model, :key, :score, :memo, :datetime, :music_id, :user_id)
+  end
 end

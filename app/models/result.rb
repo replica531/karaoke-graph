@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Result < ApplicationRecord
   belongs_to :music
   belongs_to :user
@@ -6,9 +8,9 @@ class Result < ApplicationRecord
   validates :score, presence: true
   validates :datetime, presence: true
 
-  enum models:{
-    DAM: "DAM",
-    JOYSOUND: "JOYSOUND",
-    その他: "その他"
+  enum models: {
+    DAM: 'DAM',
+    JOYSOUND: 'JOYSOUND',
+    その他: 'その他'
   }
 end

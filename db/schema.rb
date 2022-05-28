@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,50 +12,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_28_091851) do
-
+ActiveRecord::Schema.define(version: 20_220_528_091_851) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "musics", force: :cascade do |t|
-    t.string "title"
-    t.string "artist"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.text "memo"
-    t.integer "key", default: 0, null: false
-    t.index ["user_id"], name: "index_musics_on_user_id"
+  create_table 'musics', force: :cascade do |t|
+    t.string 'title'
+    t.string 'artist'
+    t.integer 'user_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.text 'memo'
+    t.integer 'key', default: 0, null: false
+    t.index ['user_id'], name: 'index_musics_on_user_id'
   end
 
-  create_table "results", force: :cascade do |t|
-    t.float "score"
-    t.text "memo"
-    t.datetime "datetime"
-    t.bigint "music_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
-    t.string "model", default: "その他", null: false
-    t.integer "key", default: 0, null: false
-    t.index ["music_id"], name: "index_results_on_music_id"
+  create_table 'results', force: :cascade do |t|
+    t.float 'score'
+    t.text 'memo'
+    t.datetime 'datetime'
+    t.bigint 'music_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.integer 'user_id', null: false
+    t.string 'model', default: 'その他', null: false
+    t.integer 'key', default: 0, null: false
+    t.index ['music_id'], name: 'index_results_on_music_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest"
-    t.string "remember_digest"
-    t.boolean "admin", default: false
-    t.string "activation_digest"
-    t.boolean "activated", default: false
-    t.datetime "activated_at"
-    t.string "reset_digest"
-    t.datetime "reset_sent_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'password_digest'
+    t.string 'remember_digest'
+    t.boolean 'admin', default: false
+    t.string 'activation_digest'
+    t.boolean 'activated', default: false
+    t.datetime 'activated_at'
+    t.string 'reset_digest'
+    t.datetime 'reset_sent_at'
+    t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
-  add_foreign_key "results", "musics"
+  add_foreign_key 'results', 'musics'
 end

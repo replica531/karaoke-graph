@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateResults < ActiveRecord::Migration[6.0]
   def change
     create_table :results do |t|
@@ -8,6 +10,6 @@ class CreateResults < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :results, [:music_id, :created_at]
+    add_index :results, %i[music_id created_at]
   end
 end

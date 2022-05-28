@@ -1,29 +1,31 @@
+# frozen_string_literal: true
+
 class MusicsController < ApplicationController
-  before_action :set_music, only: [:show, :edit, :update, :destroy]
-  before_action :set_artists, only: [:index, :new, :create, :edit, :update]
+  before_action :set_music, only: %i[show edit update destroy]
+  before_action :set_artists, only: %i[index new create edit update]
 
   def index
     @sort = {
       "平均点": 'average_score',
-      "歌唱回数": 'results.length',
+      "歌唱回数": 'results.length'
     }
     scope = current_user.musics.all.eager_load(:results).order(:artist).order(:title)
     scope = scope.where('title LIKE ?', "%#{params[:title]}%") if params[:title].present?
     scope = scope.where('artist LIKE ?', "%#{params[:artist]}%") if params[:artist].present?
     if params[:sort].present?
-      scope = scope.sort_by{|s| s.average_score}.reverse if params[:sort] == 'average_score'
-      scope = scope.sort_by{|s| s.results.length}.reverse if params[:sort] == 'results.length'
+      scope = scope.sort_by(&:average_score).reverse if params[:sort] == 'average_score'
+      scope = scope.sort_by { |s| s.results.length }.reverse if params[:sort] == 'results.length'
     end
     @musics = scope
     @titles = current_user.musics.pluck(:title).uniq
   end
 
   def show
-    @results = @music.results.order(datetime: "DESC").limit(10).reverse
+    @results = @music.results.order(datetime: 'DESC').limit(10).reverse
     @results.each do |result|
-      result.datetime.strftime("F")
+      result.datetime.strftime('F')
     end
-    #グラフの縦の範囲を決める
+    # グラフの縦の範囲を決める
     @y_min = 101
     @y_max = -1
     if @music.results.present?
@@ -40,8 +42,7 @@ class MusicsController < ApplicationController
     @music = Music.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @music = Music.new(music_params)
@@ -67,15 +68,16 @@ class MusicsController < ApplicationController
   end
 
   private
-    def set_music
-      @music = Music.find(params[:id])
-    end
 
-    def set_artists
-      @artists = current_user.musics.pluck(:artist).uniq
-    end
+  def set_music
+    @music = Music.find(params[:id])
+  end
 
-    def music_params
-      params.require(:music).permit(:title, :artist, :key, :memo, :user_id)
-    end
+  def set_artists
+    @artists = current_user.musics.pluck(:artist).uniq
+  end
+
+  def music_params
+    params.require(:music).permit(:title, :artist, :key, :memo, :user_id)
+  end
 end

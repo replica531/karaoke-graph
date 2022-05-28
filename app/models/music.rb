@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Music < ApplicationRecord
   belongs_to :user
   validates :title, presence: true
@@ -6,11 +8,12 @@ class Music < ApplicationRecord
   has_many :results, dependent: :destroy
 
   def average_score
-    return 0 if self.results.length == 0
+    return 0 if results.length.zero?
+
     score_sum = 0
-    self.results.each do |result|
+    results.each do |result|
       score_sum += result.score
     end
-    (score_sum / self.results.length).round(3)
+    (score_sum / results.length).round(3)
   end
 end
