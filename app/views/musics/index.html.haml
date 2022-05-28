@@ -23,7 +23,12 @@
             %datalist#artists
               - @artists.each do |artist|
                 %option{value: artist}
-          %td= select_tag "sort", options_for_select(@sort, params[:sort]), include_blank: true, class:'form-control form-select'
+          %td
+            = select_tag "sort", options_for_select(@sort, params[:sort]), include_blank: true, class:'form-control form-select'
+            .text-center
+              %label
+                = check_box_tag :favorite, true, params[:favorite]
+                お気に入りのみ
           %td= submit_tag '検索', class: 'btn-lg btn-primary w-100 d-block'
   %table.table
     %thead.table-info
@@ -39,7 +44,10 @@
         %td{colspan:6}= link_to '曲登録', new_user_music_path, class: 'btn btn-primary text-white w-100'
       - @musics.each do |music|
         %tr
-          %td= music.title
+          %td
+            -if music.favorite
+              %i.bi.bi-star-fill
+            #{music.title}
           %td= music.artist
           %td= music.key
           %td= music.results.length
