@@ -55,3 +55,4 @@
           %td
             .mb-1= link_to '得点記録', new_user_music_result_path(music_id: music), class: 'btn btn-md btn-info text-dark w-100'
             = link_to 'データ閲覧', user_music_path(id: music.id), class: 'btn btn-md btn-primary text-white w-100'
+  = paginate @musics
