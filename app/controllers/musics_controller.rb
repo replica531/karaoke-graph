@@ -17,7 +17,7 @@ class MusicsController < ApplicationController
       scope = scope.sort_by { |s| s.results.length }.reverse if params[:sort] == 'results.length'
     end
     scope = scope.where(favorite: true) if params[:favorite]
-    @musics = scope
+    @musics = scope.page(params[:page]).per(20)
     @titles = current_user.musics.pluck(:title).uniq
   end
 
@@ -57,7 +57,7 @@ class MusicsController < ApplicationController
 
   def update
     if @music.update(music_params)
-      redirect_to user_music_path(user_id:current_user, id: @music)
+      redirect_to user_music_path(user_id: current_user, id: @music)
     else
       render :edit
     end
