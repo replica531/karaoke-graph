@@ -11,6 +11,7 @@ gem 'chartkick'
 gem 'faker', '2.1.2'
 gem 'groupdate'
 gem 'jbuilder', '2.9.1'
+gem 'kaminari'
 gem 'pg', '1.1.4'
 gem 'puma', '4.3.6'
 gem 'rails', '6.0.3'
@@ -18,7 +19,6 @@ gem 'sass-rails', '5.1.0'
 gem 'turbolinks', '5.2.0'
 gem 'webpacker', '4.0.7'
 gem 'will_paginate', '3.1.8'
-gem 'kaminari'
 
 group :development, :test do
   gem 'byebug',  '11.0.1', platforms: %i[mri mingw x64_mingw]
