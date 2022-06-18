@@ -15,7 +15,7 @@
 %h3.text-center 平均点: #{@music.average_score}
 = line_chart @results.map{|r|[r[:datetime].strftime("%F %H:%M"),r[:score]]}, xtitle: "歌唱日時", ytitle: "Score", min: @y_min, max: @y_max, curve: false, discrete: true
 .row
-  .col-6= link_to '編集', edit_user_music_path(id: @music.id), class: 'btn btn-sm btn-primary text-white w-100'
-  .col-6= link_to '削除', user_music_path(id: @music.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-danger text-white w-100'
+  .col-6= link_to '曲情報編集', edit_user_music_path(id: @music.id), class: 'btn btn-sm btn-primary text-white w-100'
+  .col-6= link_to '曲削除', user_music_path(id: @music.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-danger text-white w-100'
 .row.mt-2
   .col-12= link_to '記録一覧', user_music_results_path(music_id: @music.id), class: 'btn btn-primary text-white w-100'

@@ -3,14 +3,32 @@
 %h5= breadcrumbs separator: " &rsaquo; "
 %h1.text-center.title Help
 .container.text-center.mt-4
-  .row.text-left.d-inline-block
-    %h4 Q. これは何を目的としたアプリですか？
-    %h4 A. カラオケで何を歌うか迷ったときに活用してもらうことを目的としています。
-    %h4 Q. お金はかかりますか？
-    %h4 A. 全て無料でお使いいただけます。
-    %h4 Q. アカウント有効化メールが届きません。
-    %h4 A. 迷惑メールフォルダに振り分けられている可能性があります。お手数ですがご確認ください。
-    %h4 Q. 退会したい時はどうしたらいいですか？
-    %h4 A. 右上の[アカウント]->[設定]から退会ボタンのあるページに移動することができます。
-
-
+  #accordionExample.accordion
+    .accordion-item
+      %h2#headingOne.accordion-header
+        %button.accordion-button{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button"}
+          Q. これは何を目的としたアプリですか？
+      #collapseOne.accordion-collapse.collapse.show{"aria-labelledby" => "headingOne", "data-bs-parent" => "#accordionExample"}
+        .accordion-body
+          A. カラオケの歌唱記録を残すことでカラオケライフを充実したものにしていただくことを目的としています。
+    .accordion-item
+      %h2#headingTwo.accordion-header
+        %button.accordion-button.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-bs-target" => "#collapseTwo", "data-bs-toggle" => "collapse", :type => "button"}
+          Q. お金はかかりますか？
+      #collapseTwo.accordion-collapse.collapse{"aria-labelledby" => "headingTwo", "data-bs-parent" => "#accordionExample"}
+        .accordion-body
+          A. 全て無料でお使いいただけます。
+    .accordion-item
+      %h2#headingThree.accordion-header
+        %button.accordion-button.collapsed{"aria-controls" => "collapseThree", "aria-expanded" => "false", "data-bs-target" => "#collapseThree", "data-bs-toggle" => "collapse", :type => "button"}
+          Q. アカウント有効化メールが届きません。
+      #collapseThree.accordion-collapse.collapse{"aria-labelledby" => "headingThree", "data-bs-parent" => "#accordionExample"}
+        .accordion-body
+          A. 迷惑メールフォルダに振り分けられている可能性があります。お手数ですがご確認ください。
+    .accordion-item
+      %h2#headingFour.accordion-header
+        %button.accordion-button.collapsed{"aria-controls" => "collapseFour", "aria-expanded" => "false", "data-bs-target" => "#collapseFour", "data-bs-toggle" => "collapse", :type => "button"}
+          Q. 退会したい時はどうしたらいいですか？
+      #collapseFour.accordion-collapse.collapse{"aria-labelledby" => "headingFour", "data-bs-parent" => "#accordionExample"}
+        .accordion-body
+          A. 右上の[アカウント]->[設定]から退会ボタンのあるページに移動することができます。
