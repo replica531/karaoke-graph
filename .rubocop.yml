@@ -1,0 +1,17 @@
+inherit_from: .rubocop_todo.yml
+
+Style/FrozenStringLiteralComment:
+   Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/GuardClause:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/password_resets_controller.rb'
+
+Naming/PredicateName:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/test_helper.rb'
