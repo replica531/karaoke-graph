@@ -11,7 +11,7 @@
           %li= message
   .row.mt-3
     .col-md-3.col-form-label 機種
-    .col-md-9.d-flex= f.select :model, Result.models.to_a, {value:"others"}, class: 'form-select'
+    .col-md-9.d-flex= f.select :model, options_for_select(Result.models.to_a, current_user.default_model), {}, class: 'form-select'
     .row.mt-3
     .col-md-3.col-form-label キー
     .col-md-9= f.select :key, [*-6..6].reverse, {value: 0}, class: 'form-control'

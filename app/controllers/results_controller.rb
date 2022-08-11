@@ -23,6 +23,7 @@ class ResultsController < ApplicationController
   def create
     @result = Result.new(result_params)
     if @result.save
+      current_user.update_attributes(default_model: @result.model)
       redirect_to user_music_results_path
     else
       render :new
