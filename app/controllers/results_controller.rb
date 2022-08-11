@@ -12,6 +12,7 @@ class ResultsController < ApplicationController
 
   def new
     @score_value = 80
+    @music = Music.find(params[:music_id])
     @result = Result.new
     @result.datetime = Time.now.strftime('%Y%m%dT%H%M').to_time
   end
