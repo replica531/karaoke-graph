@@ -17,7 +17,7 @@ class MusicsController < ApplicationController
       scope = scope.sort_by { |s| s.results.length }.reverse if params[:sort] == 'results.length'
     end
     scope = scope.where(favorite: true) if params[:favorite]
-    @musics = scope.page(params[:page]).per(20)
+    @musics = Kaminari.paginate_array(scope).page(params[:page]).per(20)
     @titles = current_user.musics.pluck(:title).uniq
   end
 
