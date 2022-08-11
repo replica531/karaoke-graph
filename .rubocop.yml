@@ -3,6 +3,12 @@ inherit_from: .rubocop_todo.yml
 Style/FrozenStringLiteralComment:
    Enabled: false
 
+Bundler/OrderedGems:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
@@ -15,3 +21,11 @@ Naming/PredicateName:
   Exclude:
     - 'spec/**/*'
     - 'test/test_helper.rb'
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+  Rails:
+    Enabled: true
