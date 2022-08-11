@@ -5,6 +5,7 @@ class Music < ApplicationRecord
   validates :title, presence: true
   validates :artist, presence: true
   validates :user_id, presence: true
+  validates :title, uniqueness: { scope: :artist }
   has_many :results, dependent: :destroy
 
   def average_score
