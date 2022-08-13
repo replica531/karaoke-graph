@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       flash[:success] = 'アカウントを有効化するためにメールをチェックしてください(メールが届かない場合は迷惑メールフォルダもご確認ください)'
       redirect_to root_url
     else
-      render :new
+      redirect_to new_user_path, alert: @user.errors.full_messages.join(', ')
     end
   end
 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       flash[:success] = 'プロフィールが更新されました'
       redirect_to user_path(@user)
     else
-      render :edit
+      redirect_to new_user_path, alert: @user.errors.full_messages.join(', ')
     end
   end
 

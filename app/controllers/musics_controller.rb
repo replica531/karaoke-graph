@@ -51,7 +51,7 @@ class MusicsController < ApplicationController
     if @music.save
       redirect_to user_musics_path
     else
-      render :new
+      redirect_to new_user_music_path, alert: @music.errors.full_messages.join(', ')
     end
   end
 
@@ -59,7 +59,7 @@ class MusicsController < ApplicationController
     if @music.update(music_params)
       redirect_to user_music_path(user_id: current_user, id: @music)
     else
-      render :edit
+      redirect_to edit_user_music_path, alert: @music.errors.full_messages.join(', ')
     end
   end
 

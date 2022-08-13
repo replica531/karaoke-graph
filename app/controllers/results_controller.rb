@@ -27,7 +27,7 @@ class ResultsController < ApplicationController
       current_user.update_attributes(default_model: @result.model)
       redirect_to user_music_results_path
     else
-      render :new
+      redirect_to new_user_music_result_path, alert: @result.errors.full_messages.join(', ')
     end
   end
 
@@ -35,7 +35,7 @@ class ResultsController < ApplicationController
     if @result.update(result_params)
       redirect_to user_music_result_path(user_id: current_user, id: @result)
     else
-      render :edit
+      redirect_to edit_user_music_result_path, alert: @result.errors.full_messages.join(', ')
     end
   end
 

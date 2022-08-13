@@ -1,5 +1,7 @@
--if model.errors.any?
+- if model.errors.any?
+  エラーあるよ
   .alert
     %ul
       -model.errors.full_messages.each do |message|
         %li= message
+= model.errors.full_messages.count
