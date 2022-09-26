@@ -12,6 +12,9 @@ ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+StringLiterals:
+  EnforcedStyle: single_quotes
+
 Style/GuardClause:
   Exclude:
     - 'app/controllers/application_controller.rb'
@@ -25,7 +28,6 @@ Naming/PredicateName:
 AllCops:
   Exclude:
     - 'vendor/**/*'
-    - 'db/**/*'
     - 'bin/**/*'
   Rails:
     Enabled: true

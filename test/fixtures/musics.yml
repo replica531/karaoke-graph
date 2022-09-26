@@ -3,9 +3,4 @@
 one:
   title: MyString
   artist: MyString
-  user_id: 1
-
-two:
-  title: MyString
-  artist: MyString
-  user_id: 1
+  user: one
