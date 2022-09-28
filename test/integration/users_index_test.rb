@@ -4,7 +4,7 @@ require 'test_helper'
 
 class UsersIndexTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:michael)
+    @user = users(:one)
   end
 
   test 'index including pagination' do

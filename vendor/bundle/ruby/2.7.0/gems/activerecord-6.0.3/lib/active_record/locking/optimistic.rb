@@ -20,7 +20,7 @@ module ActiveRecord
     #   p1 = Person.find(1)
     #   p2 = Person.find(1)
     #
-    #   p1.first_name = "Michael"
+    #   p1.first_name = "one"
     #   p1.save
     #
     #   p2.first_name = "should fail"
@@ -31,7 +31,7 @@ module ActiveRecord
     #   p1 = Person.find(1)
     #   p2 = Person.find(1)
     #
-    #   p1.first_name = "Michael"
+    #   p1.first_name = "one"
     #   p1.save
     #
     #   p2.destroy # Raises an ActiveRecord::StaleObjectError
