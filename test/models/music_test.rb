@@ -4,7 +4,7 @@ require 'test_helper'
 
 class MusicTest < ActiveSupport::TestCase
   def setup
-    @user = users(:michael)
+    @user = users(:one)
     @music = @user.musics.new(title: 'いいんですか', artist: 'RADWIMPS')
   end
 

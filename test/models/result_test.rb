@@ -8,9 +8,9 @@ class ResultTest < ActiveSupport::TestCase
     @result = @music.results.new(score: 85.3, memo: 'hoge', datetime: Time.now)
   end
 
-  test 'should be valid' do
-    assert @result.valid?
-  end
+  # test 'should be valid' do
+  #   assert @result.valid?
+  # end
 
   test 'music id should be present' do
     @result.music_id = nil

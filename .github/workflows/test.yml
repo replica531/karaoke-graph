@@ -6,10 +6,14 @@ jobs:
 
     services:
       postgres:
-        image: postgres:10
+        image: postgres:12
+        ports:
+          - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         env:
-          POSTGRES_HOST_AUTH_METHOD: 'trust'
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
       redis:
         image: redis:alpine
         options: --health-cmd "redis-cli -h localhost ping" --health-interval 10s --health-timeout 5s --health-retries 15
@@ -18,6 +22,9 @@ jobs:
       env:
         RAILS_ENV: test
         DATABASE_HOST: postgres
+        TEST_PG_USER: postgres
+        TEST_PG_PASSWORD: postgres
+        TEST_PG_HOST: postgres
         REDIS_URL: redis://redis:6379/1
 
     steps:
@@ -43,21 +50,22 @@ jobs:
             ${{ runner.os }}-gem-${{ env.cache-name }}-
             ${{ runner.os }}-gem-
             ${{ runner.os }}-
-      - name: Install Node.js and Yarn
+      - name: Install Node.js with n.
         run: |
-          # https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions
-          curl -sL https://deb.nodesource.com/setup_12.x | bash -
-          apt-get install -y nodejs
-          # https://classic.yarnpkg.com/en/docs/install#debian-stable
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-          echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-          apt update && apt install yarn
+          apt-get update
+          apt-get install -y npm
+          npm install n -g
+          n stable
+          ln -sf /usr/local/bin/node /usr/bin/node
+          apt-get purge -y npm
+      - name: Install Yarn
+        run: npm install -g yarn
       - name: Install Bundler
         run: gem install bundler --no-document -v $(grep "BUNDLED WITH" -1 Gemfile.lock | tail -n 1)
       - name: Bundle install
-        run: bundle install --path=vendor/bundle --jobs 4 --retry 3
+        run: bundle install --jobs 4 --retry 3
       - name: Yarn install
-        run: bundle exec rails yarn:install
+        run: yarn install
       - name: DB setup
         run: bundle exec rails db:setup
       - name: Run rails test
