@@ -87,6 +87,10 @@ class User < ApplicationRecord
     (score_sum / results.length).round(3)
   end
 
+  def artist_count
+    musics.select(:artist).distinct.count
+  end
+
   private
 
   def downcase_email
