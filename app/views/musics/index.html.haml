@@ -4,7 +4,7 @@
   %h5= breadcrumbs separator: " &rsaquo; "
   %h1.text-center.title 曲一覧
   = form_tag user_musics_path, { method: 'GET', remote: false } do
-    %table.table
+    %table.table.bg-white.mb-0
       %thead.table-info
         %tr
           %th 曲名
@@ -30,8 +30,8 @@
                 = check_box_tag :favorite, true, params[:favorite]
                 お気に入りのみ
           %td= submit_tag '検索', class: 'btn-lg btn-primary w-100 d-block'
-  %table.table
-    %thead.table-info
+  %table.table.bg-white
+    %thead.table-primary
       %tr
         %th 曲名
         %th アーティスト
