@@ -68,8 +68,6 @@ jobs:
         run: yarn install
       - name: DB setup
         run: bundle exec rails db:setup
-      - name: Webpack compilation
-        run: bundle exec rails webpacker:compile
       - name: Run rails test
         run: bundle exec rails test
       - name: Run rubocop
