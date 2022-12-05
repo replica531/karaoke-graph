@@ -11,4 +11,4 @@
     %i.bi.bi-music-note-list
     登録曲一覧
 
-= bar_chart @user.musics.group(:artist).order('count_all desc').count, library: {barPercentage: 0.8}, height: "#{@user.musics.length*15}px"
+= bar_chart @user.musics.group(:artist).order('count_all desc').count, library: {barPercentage: 0.8}, height: "#{@user.artist_count*80}px"
