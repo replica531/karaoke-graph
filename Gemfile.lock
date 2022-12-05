@@ -384,7 +384,7 @@ DEPENDENCIES
   tzinfo-data
   web-console (= 4.0.1)
   webdrivers (= 4.1.2)
-  webpacker (= 4.0.7)
+  webpacker
   will_paginate (= 3.1.8)
 
 BUNDLED WITH
