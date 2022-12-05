@@ -4,7 +4,7 @@
 %h1.text-center.title #{@music.title} (#{@music.artist})
 
 %table.table
-  %thead.table-info
+  %thead.table-dark
     %tr
       %th 機種
       %th キー
@@ -15,7 +15,7 @@
 
   %tbody
     %tr
-      %td{colspan:6}= link_to '得点記録', new_user_music_result_path, class: 'btn btn-primary text-white w-100'
+      %td{colspan:6}= link_to '得点記録', new_user_music_result_path, class: 'btn btn-outline-dark w-100'
     - @results.each do |result|
       %tr
         %td= result.model
@@ -24,4 +24,4 @@
         %td= result.memo
         %td= result.datetime.strftime("%F %H:%M")
         %td
-          = link_to '詳細', user_music_result_path(id: result.id), class: 'btn btn-md btn-primary text-white'
+          = link_to '詳細', user_music_result_path(id: result.id), class: 'btn btn-md btn-outline-dark'

@@ -18,12 +18,12 @@
         %td= user.name
         %td= user.email
         %td
-          = link_to '詳細', user, class: 'btn btn-sm btn-primary text-white'
-          = link_to '編集', edit_user_path(user), class: 'btn btn-sm btn-primary text-white'
-          = link_to '削除', user, method: :delete, data: { confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-sm btn-danger text-white'
+          = link_to '詳細', user, class: 'btn btn-sm btn-outline-dark'
+          = link_to '編集', edit_user_path(user), class: 'btn btn-sm btn-outline-dark'
+          = link_to '削除', user, method: :delete, data: { confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-sm btn-outline-danger text-white'
 
 = will_paginate
 
 %br/
-= link_to 'ユーザー登録', new_user_path, class: 'btn btn-primary text-white w-100'
+= link_to 'ユーザー登録', new_user_path, class: 'btn btn-outline-dark w-100'
 

@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
 $pc: 1024px; // PC
 $tab: 680px; // タブレット
@@ -33,22 +34,15 @@ body {
   padding-top: 100px;
   padding-bottom: 30px;
   box-sizing: border-box;
-  background: radial-gradient(1.5em 6.28571em at 1.95em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(1.5em 6.28571em at -0.45em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 1.5em 5.5em, radial-gradient(2.3em 4.57143em at 2.99em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(2.3em 4.57143em at -0.69em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 2.3em 4em, radial-gradient(3.5em 6.28571em at 4.55em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(3.5em 6.28571em at -1.05em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 3.5em 5.5em, radial-gradient(#15ffa5, #00ced1);
-  background-color: mediumspringgreen;
-  background-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em, 3.5em 11em, 100% 100%;
-  background-repeat: repeat;
+  background-color: white;
 }
 
 .title {
+  font-family: 'Noto Sans JP', sans-serif;
   text-align:center;
 	line-height:0.95em;
 	font-weight:bold;
-	color: #FFF;
-	text-shadow: 
-		0 0 0.10em #2962FF,
-		0 0 0.15em #2962FF,
-		0 0 0.80em #2962FF,
-		0 0 1.00em #2962FF;
+	color: #000000;
 }
 
 .hover:hover {
@@ -63,6 +57,11 @@ body {
   text-align: center;
   border:2px solid #990000;
   padding:12px; font-weight:850;
+}
+
+.big-icon {
+  font-size: 70px;
+
 }
 
 /* home */
@@ -127,23 +126,15 @@ header {
 }
 
 #logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 2.7em;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  color: #FFF;
-	text-shadow: 
-		0 0 0.05em #F06292,
-		0 0 0.10em #F06292,
-		0 0 0.15em #F06292,
-		0 0 0.30em #F06292;
-	filter: saturate(80%);
+  font-size:4em;
+	text-align:center;
+	line-height:0.95em;
+	font-weight:bold;
+	color: #DC3545;
+	text-shadow: 0.02em 0.02em 0.02em rgba(0,0,0,1);
   &:hover {
+    color: rgb(255, 19, 19);
     display: inline-block;
-    transform: scale(1.05);
     text-decoration: none;
     background-color: transparent;
   }

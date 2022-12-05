@@ -1,12 +1,33 @@
 - provide(:title, "Home")
 %h1.text-center.home-title Karaoke Graph
 .row.text-center
-  %h2.mb-3.home-sub_title カラオケ歌唱記録Webサービス(β版)
-  = image_tag 'graph.jpg'
-%h4.text-center.mt-3 これまでの歌唱記録を記録してグラフや一覧で閲覧可能
+  %h2.mb-3.home-sub_title カラオケ歌唱記録Webサービス
+.container.bg-danger.round-sm
+  .row
+    .col-md-4.px-5
+      %mb-3.text-white.text-center
+        %i.bi.bi-music-note-list.big-icon.d-block.mx-auto
+        %h3 カラオケ歌唱記録を管理
+      %p.text-white
+        カラオケ歌唱記録を管理することができます。
+        また、歌唱記録をグラフ化することができます。
+    .col-md-4.px-5
+      %mb-3.text-white.text-center
+        %i.bi.bi-graph-up.big-icon.d-block.mx-auto
+        %h3 カラオケ歌唱記録をグラフ化
+      %p.text-white
+        カラオケ歌唱記録をグラフ化することができます。
+        グラフ化したデータは、他のユーザーと共有することができます。
+    .col-md-4.px-5
+      %mb-3.text-white.text-center
+        %i.bi.bi-people-fill.big-icon.d-block.mx-auto
+        %h3 カラオケ歌唱記録を共有
+      %p.text-white
+        カラオケ歌唱記録を他のユーザーと共有することができます。
+        また、他のユーザーのカラオケ歌唱記録を閲覧することができます。
+
 - if logged_in?
   .row
-    = button_to user_musics_path(@current_user), method: :get, class: 'btn btn-lg btn-primary w-100 home-lg-btn' do
+    = button_to user_musics_path(@current_user), method: :get, class: 'btn btn-lg btn-outline-dark w-100 home-lg-btn mt-3' do
       %i.bi.bi-music-note-list
       登録曲一覧
-
