@@ -66,6 +66,8 @@ jobs:
         run: bundle install --jobs 4 --retry 3
       - name: Yarn install
         run: yarn install
+      - name: webpack
+        run: bin/webpack
       - name: DB setup
         run: bundle exec rails db:setup
       - name: Run rails test
