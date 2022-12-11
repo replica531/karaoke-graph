@@ -11,5 +11,5 @@
     = simple_format @result.memo
 %h3.text-center 歌唱日時: #{@result.datetime.strftime("%F %H:%M")}
 .row
-  .col-6= link_to '編集', edit_user_music_result_path(id: @result.id), class: 'btn btn-sm btn-primary text-white w-100'
+  .col-6= link_to '編集', edit_user_music_result_path(id: @result.id), class: 'btn btn-sm btn-dark text-white w-100'
   .col-6= link_to '削除', user_music_result_path(id: @result.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-danger text-white w-100'

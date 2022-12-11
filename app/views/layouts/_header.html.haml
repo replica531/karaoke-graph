@@ -1,23 +1,23 @@
 %header
-  %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+  %nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top.shadow
     .container-fluid
       %a.navbar-brand#logo{:href => root_path}
         %i.bi.bi-music-note
         Karaoke Graph
         %i.bi.bi-music-note
-      %button.navbar-toggler{"aria-controls" => "navbarNavDarkDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDarkDropdown", "data-bs-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggler{"aria-controls" => "navbarNavLightDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavLightDropdown", "data-bs-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
-      #navbarNavDarkDropdown.collapse.navbar-collapse
+      #navbarNavLightDropdown.collapse.navbar-collapse
         %ul.navbar-nav.mx-auto.me-md-3
           - if logged_in?
             %li.nav-item.dropdown
-              %a#navbarDarkDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+              %a#navbarLightDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
                 %i.bi.bi-person-circle
                 アカウント
-              %ul.dropdown-menu.dropdown-menu-dark{"aria-labelledby" => "navbarDarkDropdownMenuLink"}
+              %ul.dropdown-menu.dropdown-menu-light{"aria-labelledby" => "navbarLightDropdownMenuLink"}
                 %li.mt-3
                   %a.dropdown-item{:href => user_path(current_user)}
-                    %h5.text-center プロフィール
+                    %h5.text-center.text-dark プロフィール
                 %li.mt-3
                   %a.dropdown-item{:href => edit_user_path(current_user)}
                     %h5.text-center
@@ -31,6 +31,6 @@
                       ログアウト
           - else
             %li.nav-item
-              .btn.btn-lg= link_to '登録', signup_path, class: 'nav-link text-white'
+              .btn.btn-lg= link_to '登録', signup_path, class: 'nav-link'
             %li.nav-item
-              .btn.btn-lg= link_to 'ログイン', login_path, class: 'nav-link text-white'
+              .btn.btn-lg= link_to 'ログイン', login_path, class: 'nav-link'
