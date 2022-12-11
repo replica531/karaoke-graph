@@ -29,7 +29,7 @@
               %label
                 = check_box_tag :favorite, true, params[:favorite]
                 お気に入りのみ
-          %td= submit_tag '検索', class: 'btn-lg btn-outline-dark w-100 d-block'
+          %td= submit_tag '検索', class: 'btn-lg btn-secondary w-100 d-block'
   %table.table
     %thead.table-dark
       %tr
@@ -41,7 +41,7 @@
         %th
     %tbody
       %tr
-        %td{colspan:6}= link_to '曲登録', new_user_music_path, class: 'btn btn-outline-dark w-100'
+        %td{colspan:6}= link_to '曲登録', new_user_music_path, class: 'btn btn-secondary w-100 text-white'
       - @musics.each do |music|
         %tr
           %td
@@ -53,6 +53,6 @@
           %td= music.results.length
           %td= music.average_score
           %td
-            .mb-1= link_to '得点記録', new_user_music_result_path(music_id: music), class: 'btn btn-md btn-outline-dark w-100'
-            = link_to 'データ閲覧', user_music_path(id: music.id), class: 'btn btn-md btn-outline-dark w-100'
+            .mb-1= link_to '得点記録', new_user_music_result_path(music_id: music), class: 'btn btn-md btn-secondary text-white w-100'
+            = link_to 'データ閲覧', user_music_path(id: music.id), class: 'btn btn-md btn-dark text-white w-100'
   = paginate @musics
