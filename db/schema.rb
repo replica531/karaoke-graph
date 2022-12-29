@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_811_142_858) do
+ActiveRecord::Schema.define(version: 20_221_229_004_114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'results', force: :cascade do |t|
+    t.float 'score'
+    t.text 'memo'
+    t.datetime 'datetime'
+    t.bigint 'music_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.integer 'user_id', null: false
+    t.string 'model', default: 'その他', null: false
+    t.integer 'key', default: 0, null: false
+    t.index ['music_id'], name: 'index_results_on_music_id'
+  end
 
   create_table 'tunes', force: :cascade do |t|
     t.string 'title'
@@ -24,19 +37,6 @@ ActiveRecord::Schema.define(version: 20_220_811_142_858) do
     t.integer 'key', default: 0, null: false
     t.boolean 'favorite', default: false, null: false
     t.index ['user_id'], name: 'index_tunes_on_user_id'
-  end
-
-  create_table 'results', force: :cascade do |t|
-    t.float 'score'
-    t.text 'memo'
-    t.datetime 'datetime'
-    t.bigint 'tune_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'user_id', null: false
-    t.string 'model', default: 'その他', null: false
-    t.integer 'key', default: 0, null: false
-    t.index ['tune_id'], name: 'index_results_on_tune_id'
   end
 
   create_table 'users', force: :cascade do |t|
@@ -56,5 +56,5 @@ ActiveRecord::Schema.define(version: 20_220_811_142_858) do
     t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
-  add_foreign_key 'results', 'tunes'
+  add_foreign_key 'results', 'tunes', column: 'music_id'
 end
