@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20_221_229_004_114) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'password_digest'
-    t.string 'remember_digesgt'
+    t.string 'remember_digest'
     t.boolean 'admin', default: false
     t.string 'activation_digest'
     t.boolean 'activated', default: false
