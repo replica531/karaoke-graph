@@ -4,12 +4,12 @@ one:
   score: 1.5
   memo: MyText
   datetime: 2021-11-21 03:46:44
-  music: one
+  tune: one
   user: one
 
 two:
   score: 1.5
   memo: MyText
   datetime: 2021-11-21 03:46:44
-  music: one
+  tune: one
   user: one

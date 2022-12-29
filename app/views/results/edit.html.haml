@@ -2,7 +2,7 @@
 - breadcrumb :result_edit, @result
 %h5= breadcrumbs separator: " &rsaquo; "
 %h1.text-center.title 記録編集
-= form_with model: @result, url: user_music_result_path(@result) do |f|
+= form_with model: @result, url: user_tune_result_path(@result) do |f|
   - if @result.errors.any?
     #error_explanation
       %h2= "#{pluralize(@result.errors.count, "error")} prohibited this result from being saved:"

@@ -2,7 +2,7 @@
 - breadcrumb :result_new
 %h5= breadcrumbs separator: " &rsaquo; "
 %h1.text-center.title 得点記録
-= form_with model: @result, url: user_music_results_path do |f|
+= form_with model: @result, url: user_tune_results_path do |f|
   - if @result.errors.any?
     #error_explanation
       %h2= "#{pluralize(@result.errors.count, "error")} prohibited this result from being saved:"
@@ -14,7 +14,7 @@
     .col-md-9.d-flex= f.select :model, options_for_select(Result.models.to_a, current_user.default_model), {}, class: 'form-select'
     .row.mt-3
     .col-md-3.col-form-label キー
-    .col-md-9= f.select :key, options_for_select([*-7..7].reverse, @music.key), {}, class: 'form-control'
+    .col-md-9= f.select :key, options_for_select([*-7..7].reverse, @tune.key), {}, class: 'form-control'
   .row.mt-3
     .col-md-3.col-form-label 得点
     .col-md-9= f.number_field :score, value: @score_value, min: 0, max: 100, step: "0.001", autocomplete: "off", class: 'form-control'
@@ -25,7 +25,7 @@
     .col-md-3.col-form-label 歌唱日時
     .col-md-9.d-flex= f.datetime_select :datetime, {use_month_numbers: true}, {class: 'form-select'}
   .row
-    .col-md-9= f.hidden_field :music_id, value: params[:music_id], class: 'form-control'
+    .col-md-9= f.hidden_field :tune_id, value: params[:tune_id], class: 'form-control'
   .row
     .col-md-9= f.hidden_field :user_id, value: params[:user_id], class: 'form-control'
   .actions.pt-3

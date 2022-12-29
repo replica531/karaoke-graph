@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :users do
-    resources :musics do
+    resources :tunes do
       resources :results
     end
   end

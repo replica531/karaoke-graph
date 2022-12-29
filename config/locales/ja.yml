@@ -4,7 +4,7 @@ ja:
       user:
         name: 名前
         password: パスワード
-      music:
+      tune:
         title: 曲名
         artist: アーティスト
       result:

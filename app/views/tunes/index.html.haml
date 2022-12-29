@@ -1,9 +1,9 @@
-- provide(:title, "Music")
--breadcrumb :musics
+- provide(:title, "Tune")
+-breadcrumb :tunes
 .container.vw-100
   %h5= breadcrumbs separator: " &rsaquo; "
   %h1.text-center.title 曲一覧
-  = form_tag user_musics_path, { method: 'GET', remote: false } do
+  = form_tag user_tunes_path, { method: 'GET', remote: false } do
     %table.table.mb-0
       %thead.table-dark
         %tr
@@ -41,18 +41,18 @@
         %th
     %tbody
       %tr
-        %td{colspan:6}= link_to '曲登録', new_user_music_path, class: 'btn btn-secondary w-100 text-white'
-      - @musics.each do |music|
+        %td{colspan:6}= link_to '曲登録', new_user_tune_path, class: 'btn btn-secondary w-100 text-white'
+      - @tunes.each do |tune|
         %tr
           %td
-            -if music.favorite
+            -if tune.favorite
               %i.bi.bi-star-fill
-            #{music.title}
-          %td= music.artist
-          %td= music.key
-          %td= music.results.length
-          %td= music.average_score
+            #{tune.title}
+          %td= tune.artist
+          %td= tune.key
+          %td= tune.results.length
+          %td= tune.average_score
           %td
-            .mb-1= link_to '得点記録', new_user_music_result_path(music_id: music), class: 'btn btn-md btn-secondary text-white w-100'
-            = link_to 'データ閲覧', user_music_path(id: music.id), class: 'btn btn-md btn-dark text-white w-100'
-  = paginate @musics
+            .mb-1= link_to '得点記録', new_user_tune_result_path(tune_id: tune), class: 'btn btn-md btn-secondary text-white w-100'
+            = link_to 'データ閲覧', user_tune_path(id: tune.id), class: 'btn btn-md btn-dark text-white w-100'
+  = paginate @tunes
