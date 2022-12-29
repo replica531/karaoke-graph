@@ -40,50 +40,50 @@ crumb :user_edit do |user|
   parent :user, user
 end
 
-crumb :musics do
-  link '曲一覧', user_musics_path
+crumb :tunes do
+  link '曲一覧', user_tunes_path
   parent :user, user_path(params[:user_id])
 end
 
-crumb :music do |music|
-  if params[:controller] == 'musics'
-    link music.title, user_music_path(id: params[:id])
+crumb :tune do |tune|
+  if params[:controller] == 'tunes'
+    link tune.title, user_tune_path(id: params[:id])
   else
-    link Music.find(params[:music_id]).title, user_music_path(id: params[:music_id])
+    link Tune.find(params[:tune_id]).title, user_tune_path(id: params[:tune_id])
   end
-  parent :musics
+  parent :tunes
 end
 
-crumb :music_new do
-  link '曲登録', new_user_music_path
-  parent :musics
+crumb :tune_new do
+  link '曲登録', new_user_tune_path
+  parent :tunes
 end
 
-crumb :music_edit do |music|
-  link '曲情報編集', edit_user_music_path
-  parent :music, music
+crumb :tune_edit do |tune|
+  link '曲情報編集', edit_user_tune_path
+  parent :tune, tune
 end
 
 crumb :results do
-  link '記録一覧', user_music_results_path
-  parent :music, user_music_path(id: params[:music_id])
+  link '記録一覧', user_tune_results_path
+  parent :tune, user_tune_path(id: params[:tune_id])
 end
 
 crumb :result do |result|
   if params[:controller] == 'results'
-    link result.datetime.strftime('%F %H:%M'), user_music_result_path(id: params[:id])
+    link result.datetime.strftime('%F %H:%M'), user_tune_result_path(id: params[:id])
   else
-    link Result.find(params[:result_id]).datetime.strftime('%F %H:%M'), user_music_result_path(id: params[:result_id])
+    link Result.find(params[:result_id]).datetime.strftime('%F %H:%M'), user_tune_result_path(id: params[:result_id])
   end
-  parent :results, user_music_path(id: params[:music_id])
+  parent :results, user_tune_path(id: params[:tune_id])
 end
 
 crumb :result_new do
-  link '記録', new_user_music_result_path
+  link '記録', new_user_tune_result_path
   parent :results
 end
 
 crumb :result_edit do |result|
-  link '記録編集', edit_user_music_result_path
+  link '記録編集', edit_user_tune_result_path
   parent :result, result
 end

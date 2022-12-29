@@ -2,48 +2,48 @@
 
 require 'application_system_test_case'
 
-class MusicsTest < ApplicationSystemTestCase
+class TunesTest < ApplicationSystemTestCase
   setup do
-    @music = musics(:one)
+    @tune = tunes(:one)
   end
 
   test 'visiting the index' do
-    visit musics_url
-    assert_selector 'h1', text: 'Musics'
+    visit tunes_url
+    assert_selector 'h1', text: 'Tunes'
   end
 
-  test 'creating a Music' do
-    visit musics_url
-    click_on 'New Music'
+  test 'creating a Tune' do
+    visit tunes_url
+    click_on 'New Tune'
 
-    fill_in 'Artist', with: @music.artist
-    fill_in 'Title', with: @music.title
-    fill_in 'User', with: @music.user_id
-    click_on 'Create Music'
+    fill_in 'Artist', with: @tune.artist
+    fill_in 'Title', with: @tune.title
+    fill_in 'User', with: @tune.user_id
+    click_on 'Create Tune'
 
-    assert_text 'Music was successfully created'
+    assert_text 'Tune was successfully created'
     click_on 'Back'
   end
 
-  test 'updating a Music' do
-    visit musics_url
+  test 'updating a Tune' do
+    visit tunes_url
     click_on 'Edit', match: :first
 
-    fill_in 'Artist', with: @music.artist
-    fill_in 'Title', with: @music.title
-    fill_in 'User', with: @music.user_id
-    click_on 'Update Music'
+    fill_in 'Artist', with: @tune.artist
+    fill_in 'Title', with: @tune.title
+    fill_in 'User', with: @tune.user_id
+    click_on 'Update Tune'
 
-    assert_text 'Music was successfully updated'
+    assert_text 'Tune was successfully updated'
     click_on 'Back'
   end
 
-  test 'destroying a Music' do
-    visit musics_url
+  test 'destroying a Tune' do
+    visit tunes_url
     page.accept_confirm do
       click_on 'Destroy', match: :first
     end
 
-    assert_text 'Music was successfully destroyed'
+    assert_text 'Tune was successfully destroyed'
   end
 end

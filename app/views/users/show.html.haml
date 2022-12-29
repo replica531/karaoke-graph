@@ -3,12 +3,12 @@
 %h5= breadcrumbs separator: " &rsaquo; "
 %p#notice= notice
 %h1.text-center.title #{@user.name}のプロフィール
-%h3.text-center 登録曲数: #{@user.musics.length}
+%h3.text-center 登録曲数: #{@user.tunes.length}
 %h3.text-center 歌唱数: #{@user.results.length}
 %h3.text-center 平均点: #{@user.average_score}
 .row
-  = button_to user_musics_path(@user), method: :get, class: 'btn btn-lg btn-dark w-100 home-lg-btn' do
-    %i.bi.bi-music-note-list
+  = button_to user_tunes_path(@user), method: :get, class: 'btn btn-lg btn-dark w-100 home-lg-btn' do
+    %i.bi.bi-tune-note-list
     登録曲一覧
 
-= bar_chart @user.musics.group(:artist).order('count_all desc').count, library: {barPercentage: 0.8}, height: "#{@user.artist_count*80}px"
+= bar_chart @user.tunes.group(:artist).order('count_all desc').count, library: {barPercentage: 0.8}, height: "#{@user.artist_count*80}px"

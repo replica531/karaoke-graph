@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Music < ApplicationRecord
+class Tune < ApplicationRecord
   belongs_to :user
   validates :title, presence: true
   validates :artist, presence: true

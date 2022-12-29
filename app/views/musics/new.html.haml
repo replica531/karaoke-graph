@@ -1,13 +1,13 @@
-- provide(:title, "Music")
-- breadcrumb :music_new
+- provide(:title, "Tune")
+- breadcrumb :tune_new
 %h5= breadcrumbs separator: " &rsaquo; "
 %h1.text-center.title 曲登録
-= form_with model: @music, url: user_musics_path do |f|
-  - if @music.errors.any?
+= form_with model: @tune, url: user_tunes_path do |f|
+  - if @tune.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@music.errors.count, "error")} prohibited this result from being saved:"
+      %h2= "#{pluralize(@tune.errors.count, "error")} prohibited this result from being saved:"
       %ul
-        - @music.errors.full_messages.each do |message|
+        - @tune.errors.full_messages.each do |message|
           %li= message
   .row
     .col-md-3.col-form-label 曲名

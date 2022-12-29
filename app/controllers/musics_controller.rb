@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class MusicsController < ApplicationController
-  before_action :set_music, only: %i[show edit update destroy]
+class TunesController < ApplicationController
+  before_action :set_tune, only: %i[show edit update destroy]
   before_action :set_artists, only: %i[index new create edit update]
 
   def index
@@ -9,7 +9,7 @@ class MusicsController < ApplicationController
       "平均点": 'average_score',
       "歌唱回数": 'results.length'
     }
-    scope = current_user.musics.all.eager_load(:results).order(:artist).order(:title)
+    scope = current_user.tunes.all.eager_load(:results).order(:artist).order(:title)
     scope = scope.where('title LIKE ?', "%#{params[:title]}%") if params[:title].present?
     scope = scope.where('artist LIKE ?', "%#{params[:artist]}%") if params[:artist].present?
     if params[:sort].present?
@@ -17,19 +17,19 @@ class MusicsController < ApplicationController
       scope = scope.sort_by { |s| s.results.length }.reverse if params[:sort] == 'results.length'
     end
     scope = scope.where(favorite: true) if params[:favorite]
-    @musics = Kaminari.paginate_array(scope).page(params[:page]).per(20)
-    @titles = current_user.musics.pluck(:title).uniq
+    @tunes = Kaminari.paginate_array(scope).page(params[:page]).per(20)
+    @titles = current_user.tunes.pluck(:title).uniq
   end
 
   def show
-    @results = @music.results.order(datetime: 'DESC').limit(10).reverse
+    @results = @tune.results.order(datetime: 'DESC').limit(10).reverse
     @results.each do |result|
       result.datetime.strftime('F')
     end
     # グラフの縦の範囲を決める
     @y_min = 101
     @y_max = -1
-    if @music.results.present?
+    if @tune.results.present?
       @results.each do |result|
         @y_min = [@y_min, result.score - 5].min
         @y_max = [@y_max, result.score + 5].max
@@ -40,45 +40,45 @@ class MusicsController < ApplicationController
   end
 
   def new
-    @music = Music.new
+    @tune = Tune.new
   end
 
   def edit; end
 
   def create
-    @music = Music.new(music_params)
-    @music.user_id = current_user.id
-    if @music.save
-      redirect_to user_musics_path
+    @tune = Tune.new(tune_params)
+    @tune.user_id = current_user.id
+    if @tune.save
+      redirect_to user_tunes_path
     else
-      redirect_to new_user_music_path, alert: @music.errors.full_messages.join(', ')
+      redirect_to new_user_tune_path, alert: @tune.errors.full_messages.join(', ')
     end
   end
 
   def update
-    if @music.update(music_params)
-      redirect_to user_music_path(user_id: current_user, id: @music)
+    if @tune.update(tune_params)
+      redirect_to user_tune_path(user_id: current_user, id: @tune)
     else
-      redirect_to edit_user_music_path, alert: @music.errors.full_messages.join(', ')
+      redirect_to edit_user_tune_path, alert: @tune.errors.full_messages.join(', ')
     end
   end
 
   def destroy
-    @music.destroy
-    redirect_to user_musics_path
+    @tune.destroy
+    redirect_to user_tunes_path
   end
 
   private
 
-  def set_music
-    @music = Music.find(params[:id])
+  def set_tune
+    @tune = Tune.find(params[:id])
   end
 
   def set_artists
-    @artists = current_user.musics.pluck(:artist).uniq
+    @artists = current_user.tunes.pluck(:artist).uniq
   end
 
-  def music_params
-    params.require(:music).permit(:title, :artist, :key, :memo, :favorite, :user_id)
+  def tune_params
+    params.require(:tune).permit(:title, :artist, :key, :memo, :favorite, :user_id)
   end
 end

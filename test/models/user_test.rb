@@ -72,8 +72,8 @@ class UserTest < ActiveSupport::TestCase
 
   test 'associated microposts should be destroyed' do
     @user.save
-    @user.musics.create!(title: 'いいんですか', artist: 'RADWIMPS')
-    assert_difference 'Music.count', -1 do
+    @user.tunes.create!(title: 'いいんですか', artist: 'RADWIMPS')
+    assert_difference 'Tune.count', -1 do
       @user.destroy
     end
   end

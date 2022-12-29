@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class MusicsControllerTest < ActionDispatch::IntegrationTest
+class TunesControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:one)
     @other_user = users(:two)
@@ -10,7 +10,7 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get user_musics_path(@user)
+    get user_tunes_path(@user)
     assert_response :success
   end
 end

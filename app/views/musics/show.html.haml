@@ -1,21 +1,21 @@
-- provide(:title, "Music")
+- provide(:title, "Tune")
 %p#notice= notice
-- breadcrumb :music, @music
+- breadcrumb :tune, @tune
 %h5= breadcrumbs separator: " &rsaquo; "
 %h1.text-center.title
-  -if @music.favorite
+  -if @tune.favorite
     %i.bi.bi-star-fill
-  #{@music.title}
-%h3.text-center アーティスト: #{@music.artist}
-%h3.text-center キー: #{@music.key}
+  #{@tune.title}
+%h3.text-center アーティスト: #{@tune.artist}
+%h3.text-center キー: #{@tune.key}
 .container.mx-auto.text-center
   %h3.text-center メモ
   %h3.d-inline-block.text-left
-    = simple_format @music.memo
-%h3.text-center 平均点: #{@music.average_score}
+    = simple_format @tune.memo
+%h3.text-center 平均点: #{@tune.average_score}
 = line_chart @results.map{|r|[r[:datetime].strftime("%F %H:%M"),r[:score]]}, xtitle: "歌唱日時", ytitle: "Score", min: @y_min, max: @y_max, curve: false, discrete: true
 .row
-  .col-6= link_to '曲情報編集', edit_user_music_path(id: @music.id), class: 'btn btn-sm btn-secondary text-white w-100'
-  .col-6= link_to '曲削除', user_music_path(id: @music.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-danger text-white w-100'
+  .col-6= link_to '曲情報編集', edit_user_tune_path(id: @tune.id), class: 'btn btn-sm btn-secondary text-white w-100'
+  .col-6= link_to '曲削除', user_tune_path(id: @tune.id), method: :delete, data: { confirm: '本当に削除してよろしいですか?' }, class: 'btn btn-sm btn-danger text-white w-100'
 .row.mt-2
-  .col-12= link_to '記録一覧', user_music_results_path(music_id: @music.id), class: 'btn btn-dark text-white w-100'
+  .col-12= link_to '記録一覧', user_tune_results_path(tune_id: @tune.id), class: 'btn btn-dark text-white w-100'

@@ -2,28 +2,28 @@
 
 require 'test_helper'
 
-class MusicTest < ActiveSupport::TestCase
+class TuneTest < ActiveSupport::TestCase
   def setup
     @user = users(:one)
-    @music = @user.musics.new(title: 'いいんですか', artist: 'RADWIMPS')
+    @tune = @user.tunes.new(title: 'いいんですか', artist: 'RADWIMPS')
   end
 
   test 'should be valid' do
-    assert @music.valid?
+    assert @tune.valid?
   end
 
   test 'user id should be present' do
-    @music.user_id = nil
-    assert_not @music.valid?
+    @tune.user_id = nil
+    assert_not @tune.valid?
   end
 
   test 'title should be present' do
-    @music.title = '   '
-    assert_not @music.valid?
+    @tune.title = '   '
+    assert_not @tune.valid?
   end
 
   test 'artist should be present' do
-    @music.artist = '  '
-    assert_not @music.valid?
+    @tune.artist = '  '
+    assert_not @tune.valid?
   end
 end

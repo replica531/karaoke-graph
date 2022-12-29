@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   before_save   :downcase_email
   before_create :create_activation_digest
-  has_many :musics, dependent: :destroy
+  has_many :tunes, dependent: :destroy
   has_many :results, dependent: :destroy
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
@@ -88,7 +88,7 @@ class User < ApplicationRecord
   end
 
   def artist_count
-    musics.select(:artist).distinct.count
+    tunes.select(:artist).distinct.count
   end
 
   private
