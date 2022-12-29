@@ -27,7 +27,7 @@ Naming/PredicateName:
 
 AllCops:
   Exclude:
-    - vendor/**/*
+    - 'vendor/**/*'
     - 'bin/**/*'
     - 'public/**/*'
     - 'tmp/**/*'
