@@ -27,7 +27,10 @@ Naming/PredicateName:
 
 AllCops:
   Exclude:
-    - 'vendor/**/*'
+    - vendor/**/*
     - 'bin/**/*'
+    - 'public/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
   Rails:
     Enabled: true
