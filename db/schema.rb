@@ -18,13 +18,13 @@ ActiveRecord::Schema.define(version: 20_221_229_004_114) do
     t.float 'score'
     t.text 'memo'
     t.datetime 'datetime'
-    t.bigint 'music_id', null: false
+    t.bigint 'tune_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.integer 'user_id', null: false
     t.string 'model', default: 'その他', null: false
     t.integer 'key', default: 0, null: false
-    t.index ['music_id'], name: 'index_results_on_music_id'
+    t.index ['tune_id'], name: 'index_results_on_tune_id'
   end
 
   create_table 'tunes', force: :cascade do |t|
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20_221_229_004_114) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'password_digest'
-    t.string 'remember_digest'
+    t.string 'remember_digesgt'
     t.boolean 'admin', default: false
     t.string 'activation_digest'
     t.boolean 'activated', default: false
@@ -56,5 +56,5 @@ ActiveRecord::Schema.define(version: 20_221_229_004_114) do
     t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
-  add_foreign_key 'results', 'tunes', column: 'music_id'
+  add_foreign_key 'results', 'tunes'
 end
