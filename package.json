@@ -11,7 +11,7 @@
     "bootstrap-icons": "^1.7.2",
     "chart.js": "^3.6.2",
     "chartkick": "^4.1.1",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",
