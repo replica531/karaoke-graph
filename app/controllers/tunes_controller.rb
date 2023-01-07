@@ -37,6 +37,12 @@ class TunesController < ApplicationController
     end
     @y_min = [0, @y_min].max
     @y_max = [100, @y_max].min
+    Genius.access_token = ENV['GENIUS_ACCESS_TOKEN']
+    Genius.text_format = "html"
+    songs = Genius::Song.search("The Hills") # Returns an array of Song objects
+    the_hills = songs.first
+    the_hills.title # => "The Hills"
+    @test = the_hills.primary_artist.name # => "The Weeknd"
   end
 
   def new
