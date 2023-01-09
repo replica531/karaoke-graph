@@ -60,3 +60,6 @@ gem 'gretel'
 
 #歌詞取得
 gem "genius", "~> 0.1.1"
+
+# 環境変数
+gem 'dotenv-rails', groups: %i[development test]
