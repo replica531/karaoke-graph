@@ -79,7 +79,7 @@ class User < ApplicationRecord
 
   def average_score
     score_sum = 0
-    return 0 if results.length.zero?
+    return 0 if results.empty?
 
     results.each do |result|
       score_sum += result.score
