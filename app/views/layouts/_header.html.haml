@@ -19,6 +19,9 @@
                   %a.dropdown-item{:href => user_path(current_user)}
                     %h5.text-center.text-dark プロフィール
                 %li.mt-3
+                  %a.dropdown-item{:href => user_logs_path(current_user)}
+                    %h5.text-center.text-dark 歌唱履歴
+                %li.mt-3
                   %a.dropdown-item{:href => edit_user_path(current_user)}
                     %h5.text-center
                       %i.bi.bi-gear-fill
