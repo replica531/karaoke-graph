@@ -9,7 +9,7 @@ class Tune < ApplicationRecord
   has_many :results, dependent: :destroy
 
   def average_score
-    return 0 if results.length.zero?
+    return 0 if results.empty?
 
     score_sum = 0
     results.each do |result|
