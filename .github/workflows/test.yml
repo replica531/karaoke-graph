@@ -20,8 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Cache node modules
-         uses: actions/cache@v2
-         env:
+        uses: actions/cache@v2
+        env:
           cache-name: cache-node-modules
         # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
           path: ~/.npm
