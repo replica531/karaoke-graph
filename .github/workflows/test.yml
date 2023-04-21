@@ -23,6 +23,13 @@ jobs:
         with:
           ruby-version: 2.7.0
           bundler-cache: true
+      - name: Set Env
+        run: |
+          echo "RAILS_ENV=test" >> $GITHUB_ENV
+          echo "TEST_PG_USER=postgres" >> $GITHUB_ENV
+          echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
+          echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
+          echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
       - name: Install Node.js with n.
         run: |
           apt-get update
@@ -31,13 +38,6 @@ jobs:
           n 16.11.0
           ln -sf /usr/local/bin/node /usr/bin/node
           apt-get purge -y npm
-      - name: Set Env
-        run: |
-          echo "RAILS_ENV=test" >> $GITHUB_ENV
-          echo "TEST_PG_USER=postgres" >> $GITHUB_ENV
-          echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
-          echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
-          echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
       - name: Install Yarn
         run: npm install -g yarn
       - name: Install Bundler
