@@ -1,7 +1,7 @@
 name: Test
 on: [push]
 jobs:
-  run:
+  rails:
     runs-on: ubuntu-latest
 
     services:
@@ -19,6 +19,26 @@ jobs:
         options: --health-cmd "redis-cli -h localhost ping" --health-interval 10s --health-timeout 5s --health-retries 15
     steps:
       - uses: actions/checkout@master
+      - name: Cache node modules
+         uses: actions/cache@v2
+         env:
+          cache-name: cache-node-modules
+        # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Cache bundle gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-${{ env.cache-name }}-
+            ${{ runner.os }}-gem-
+            ${{ runner.os }}-
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.0
