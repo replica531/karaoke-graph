@@ -49,7 +49,7 @@ class TunesController < ApplicationController
     @tune = Tune.new(tune_params)
     @tune.user_id = current_user.id
     if @tune.save
-      redirect_to user_tunes_path
+      redirect_to user_tune_path(@tune.user, @tune), notice: '曲を登録しました'
     else
       redirect_to new_user_tune_path, alert: @tune.errors.full_messages.join(', ')
     end
