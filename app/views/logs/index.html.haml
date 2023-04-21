@@ -1,0 +1,24 @@
+- provide(:title, "Logs")
+- breadcrumb :logs
+.container.vw-100
+  %h5= breadcrumbs separator: " &rsaquo; "
+  %h1.text-center.title 歌唱履歴
+  %table.table
+    %thead.table-dark
+      %tr
+        %th 曲名
+        %th アーティスト
+        %th キー
+        %th 得点
+        %th 歌唱日時
+        %th
+    %tbody
+      - @logs.each do |log|
+        %tr
+          %td
+            #{log.tune.title}
+          %td= log.tune.artist
+          %td= log.key
+          %td= log.score
+          %td= log.created_at.strftime("%Y/%m/%d %H:%M")
+  = paginate @logs

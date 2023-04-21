@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :tunes do
       resources :results
     end
+    resources :logs, only: [:index]
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: %i[new create edit update]

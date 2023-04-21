@@ -87,3 +87,8 @@ crumb :result_edit do |result|
   link '記録編集', edit_user_tune_result_path
   parent :result, result
 end
+
+crumb :logs do
+  link '歌唱履歴', user_logs_path
+  parent :user
+end
