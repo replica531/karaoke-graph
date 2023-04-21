@@ -23,6 +23,13 @@ jobs:
         with:
           ruby-version: 2.7.0
           bundler-cache: true
+      - name: Install Node.js with n.
+        apt-get update
+        apt-get install -y npm
+        npm install n -g
+        n 16.11.0
+        ln -sf /usr/local/bin/node /usr/bin/node
+        apt-get purge -y npm
       - name: Set Env
         run: |
           echo "RAILS_ENV=test" >> $GITHUB_ENV
