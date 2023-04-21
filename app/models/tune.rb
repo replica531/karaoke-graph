@@ -2,6 +2,9 @@
 
 class Tune < ApplicationRecord
   belongs_to :user
+  validates :title, presence: true
+  validates :artist, presence: true
+  validates :user_id, presence: true
   validate :validate_tune_existance
   has_many :results, dependent: :destroy
 

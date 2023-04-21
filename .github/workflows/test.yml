@@ -17,58 +17,22 @@ jobs:
       redis:
         image: redis:alpine
         options: --health-cmd "redis-cli -h localhost ping" --health-interval 10s --health-timeout 5s --health-retries 15
-    container:
-      image: ruby:2.7.0
-      env:
-        RAILS_ENV: test
-        DATABASE_HOST: postgres
-        TEST_PG_USER: postgres
-        TEST_PG_PASSWORD: postgres
-        TEST_PG_HOST: postgres
-        REDIS_URL: redis://redis:6379/1
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
+      - uses: actions/checkout@master
+      - uses: ruby/setup-ruby@v1
         with:
-          # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Cache bundle gems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-${{ env.cache-name }}-
-            ${{ runner.os }}-gem-
-            ${{ runner.os }}-
-      - name: Install Node.js with n.
+          ruby-version: 2.7.0
+          bundler-cache: true
+      - name: Set Env
         run: |
-          apt-get update
-          apt-get install -y npm
-          npm install n -g
-          n 16.11.0
-          ln -sf /usr/local/bin/node /usr/bin/node
-          apt-get purge -y npm
-      - name: Install Yarn
-        run: npm install -g yarn
-      - name: Install Bundler
-        run: gem install bundler --no-document -v $(grep "BUNDLED WITH" -1 Gemfile.lock | tail -n 1)
-      - name: Bundle install
-        run: bundle install --jobs 4 --retry 3
-      - name: Yarn install
-        run: yarn install
+          echo "RAILS_ENV=test" >> $GITHUB_ENV
+          echo "TEST_PG_USER=postgres" >> $GITHUB_ENV
+          echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
+          echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
+          echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
+      - name: Run rubocop
+        run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
       - name: DB setup
         run: bundle exec rails db:setup
       - name: Run rails test
         run: bundle exec rails test
-      - name: Run rubocop
-        run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
