@@ -2,10 +2,7 @@
 
 class Tune < ApplicationRecord
   belongs_to :user
-  validates :title, presence: true
-  validates :artist, presence: true
-  validates :user_id, presence: true
-  validates :title, uniqueness: { scope: :artist }
+  validate :validate_tune_existance
   has_many :results, dependent: :destroy
 
   def average_score
@@ -16,5 +13,11 @@ class Tune < ApplicationRecord
       score_sum += result.score
     end
     (score_sum / results.length).round(3)
+  end
+
+  private
+
+  def validate_tune_existance
+    errors.add(:base, '曲がすでに登録済みです') if Tune.where(user_id: user.id, title: title, artist: artist).present?
   end
 end
