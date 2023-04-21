@@ -23,7 +23,8 @@ jobs:
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
-        # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
+        with:
+          # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
           path: ~/.npm
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
