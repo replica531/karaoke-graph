@@ -28,7 +28,18 @@ jobs:
         REDIS_URL: redis://redis:6379/1
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.2
+          bundler-cache: true
+      - name: Set Env
+        run: |
+           echo "RAILS_ENV=test" >> $GITHUB_ENV
+           echo "TEST_PG_USER=postgres" >> $GITHUB_ENV
+           echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
+           echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
+           echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -41,15 +52,6 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Cache bundle gems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-${{ env.cache-name }}-
-            ${{ runner.os }}-gem-
-            ${{ runner.os }}-
       - name: Install Node.js with n.
         run: |
           apt-get update
@@ -60,15 +62,11 @@ jobs:
           apt-get purge -y npm
       - name: Install Yarn
         run: npm install -g yarn
-      - name: Install Bundler
-        run: gem install bundler --no-document -v $(grep "BUNDLED WITH" -1 Gemfile.lock | tail -n 1)
-      - name: Bundle install
-        run: bundle install --jobs 4 --retry 3
       - name: Yarn install
         run: yarn install
+      - name: Run rubocop
+        run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
       - name: DB setup
         run: bundle exec rails db:setup
       - name: Run rails test
         run: bundle exec rails test
-      - name: Run rubocop
-        run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
