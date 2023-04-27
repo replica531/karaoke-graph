@@ -1,72 +1,93 @@
-name: Test
+name: command
 on: [push]
 jobs:
-  run:
-    runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:12
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-        env:
-          POSTGRES_HOST_AUTH_METHOD: trust
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-      redis:
-        image: redis:alpine
-        options: --health-cmd "redis-cli -h localhost ping" --health-interval 10s --health-timeout 5s --health-retries 15
-    container:
-      image: ruby:2.7.2
-      env:
-        RAILS_ENV: test
-        DATABASE_HOST: postgres
-        TEST_PG_USER: postgres
-        TEST_PG_PASSWORD: postgres
-        TEST_PG_HOST: postgres
-        REDIS_URL: redis://redis:6379/1
-
+  command:
+    name: Use Linux commands
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@master
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.2
-          bundler-cache: true
-      - name: Set Env
-        run: |
-           echo "RAILS_ENV=test" >> $GITHUB_ENV
-           echo "TEST_PG_USER=postgres" >> $GITHUB_ENV
-           echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
-           echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
-           echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Install Node.js with n.
-        run: |
-          apt-get update
-          apt-get install -y npm
-          npm install n -g
-          n 16.11.0
-          ln -sf /usr/local/bin/node /usr/bin/node
-          apt-get purge -y npm
-      - name: Install Yarn
-        run: npm install -g yarn
-      - name: Yarn install
-        run: yarn install
-      - name: Run rubocop
-        run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
-      - name: DB setup
-        run: bundle exec rails db:setup
-      - name: Run rails test
-        run: bundle exec rails test
+      - name: Show ubuntu details
+        run: lsb_release -a
+      - name: Inspect files before checkout
+        run: ls -la
+      - name: show current directory before checkout
+        run: pwd
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Inspect files after checkout
+        run: ls -la
+      - name: show current directory after checkout
+        run: pwd
+      - name: show all branches after checkout
+        run: git branch -a
+# name: Test
+# on: [push]
+# jobs:
+#   run:
+#     runs-on: ubuntu-latest
+
+#     services:
+#       postgres:
+#         image: postgres:12
+#         ports:
+#           - 5432:5432
+#         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+#         env:
+#           POSTGRES_HOST_AUTH_METHOD: trust
+#           POSTGRES_USER: postgres
+#           POSTGRES_PASSWORD: postgres
+#       redis:
+#         image: redis:alpine
+#         options: --health-cmd "redis-cli -h localhost ping" --health-interval 10s --health-timeout 5s --health-retries 15
+#     container:
+#       image: ruby:2.7.2
+#       env:
+#         RAILS_ENV: test
+#         DATABASE_HOST: postgres
+#         TEST_PG_USER: postgres
+#         TEST_PG_PASSWORD: postgres
+#         TEST_PG_HOST: postgres
+#         REDIS_URL: redis://redis:6379/1
+
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: 2.7.2
+#           bundler-cache: true
+#       - name: Set Env
+#         run: |
+#            echo "RAILS_ENV=test" >> $GITHUB_ENV
+#            echo "TEST_PG_USER=postgres" >> $GITHUB_ENV
+#            echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
+#            echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
+#            echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
+#       - name: Cache node modules
+#         uses: actions/cache@v2
+#         env:
+#           cache-name: cache-node-modules
+#         with:
+#           # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
+#           path: ~/.npm
+#           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-build-${{ env.cache-name }}-
+#             ${{ runner.os }}-build-
+#             ${{ runner.os }}-
+#       - name: Install Node.js with n.
+#         run: |
+#           apt-get update
+#           apt-get install -y npm
+#           npm install n -g
+#           n 16.11.0
+#           ln -sf /usr/local/bin/node /usr/bin/node
+#           apt-get purge -y npm
+#       - name: Install Yarn
+#         run: npm install -g yarn
+#       - name: Yarn install
+#         run: yarn install
+#       - name: Run rubocop
+#         run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
+#       - name: DB setup
+#         run: bundle exec rails db:setup
+#       - name: Run rails test
+#         run: bundle exec rails test
