@@ -5,7 +5,7 @@ class Tune < ApplicationRecord
   validates :title, presence: true
   validates :artist, presence: true
   validates :user_id, presence: true
-  validate :validate_tune_existance
+  validate :validate_tune_existance, on: :create
   has_many :results, dependent: :destroy
 
   def average_score
