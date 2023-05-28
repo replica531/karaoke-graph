@@ -21,4 +21,5 @@
           %td= log.key
           %td= log.score
           %td= log.created_at.strftime("%Y/%m/%d %H:%M")
+          %td= link_to "詳細", user_tune_result_path(user_id: current_user, tune_id: log.tune, id: log), class: "btn btn-primary"
   = paginate @logs
