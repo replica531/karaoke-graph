@@ -29,6 +29,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.2
+          bundler-cache: true
+      - name: Set Env
+         run: |
+           echo "RAILS_ENV=test" >> $GITHUB_ENV
+           echo "TEST_PG_USER=postgres" >> $GITHUB_ENV
+           echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
+           echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
+           echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -60,10 +71,6 @@ jobs:
           apt-get purge -y npm
       - name: Install Yarn
         run: npm install -g yarn
-      - name: Install Bundler
-        run: gem install bundler --no-document -v $(grep "BUNDLED WITH" -1 Gemfile.lock | tail -n 1)
-      - name: Bundle install
-        run: bundle install --jobs 4 --retry 3
       - name: Yarn install
         run: yarn install
       - name: DB setup
