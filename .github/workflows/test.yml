@@ -34,12 +34,12 @@ jobs:
           ruby-version: 2.7.2
           bundler-cache: true
       - name: Set Env
-         run: |
-           echo "RAILS_ENV=test" >> $GITHUB_ENV
-           echo "TEST_PG_USER=postgres" >> $GITHUB_ENV
-           echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
-           echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
-           echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
+        run: |
+          echo "RAILS_ENV=test" >> $GITHUB_ENV
+          echo "TEST_PG_USER=postgres" >> $GITHUB_ENV
+          echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
+          echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
+          echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
       - name: Cache node modules
         uses: actions/cache@v2
         env:
