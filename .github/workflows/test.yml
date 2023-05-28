@@ -1,7 +1,7 @@
 name: Test
 on: [push]
 jobs:
-  run:
+  rails:
     runs-on: ubuntu-latest
 
     services:
@@ -31,6 +31,34 @@ jobs:
           echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
           echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
           echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
+      - name: Cache bundle gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-${{ env.cache-name }}-
+            ${{ runner.os }}-gem-
+            ${{ runner.os }}-
+
+      - name: DB setup
+        run: bundle exec rails db:setup
+      - name: Run rails test
+        run: bundle exec rails test
+      - name: Run rubocop
+        run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
+
+  browser-extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -43,30 +71,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Cache bundle gems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-${{ env.cache-name }}-
-            ${{ runner.os }}-gem-
-            ${{ runner.os }}-
-      - name: Install Node.js with n.
-        run: |
-          apt-get update
-          apt-get install -y npm
-          npm install n -g
-          n 16.11.0
-          ln -sf /usr/local/bin/node /usr/bin/node
-          apt-get purge -y npm
-      - name: Install Yarn
-        run: npm install -g yarn
       - name: Yarn install
-        run: yarn install
-      - name: DB setup
-        run: bundle exec rails db:setup
-      - name: Run rails test
-        run: bundle exec rails test
-      - name: Run rubocop
-        run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
+        run: yarn --cwd browser-extension install
+      - name: Prettier && ESLint
+        run: if yarn --cwd browser-extension lint-check |& grep -E "(error|warn)"; then exit 1; fi
