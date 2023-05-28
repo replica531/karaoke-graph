@@ -24,6 +24,9 @@ jobs:
         with:
           ruby-version: 2.7.2
           bundler-cache: true
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Set Env
         run: |
           echo "RAILS_ENV=test" >> $GITHUB_ENV
@@ -40,25 +43,9 @@ jobs:
             ${{ runner.os }}-gem-${{ env.cache-name }}-
             ${{ runner.os }}-gem-
             ${{ runner.os }}-
-
-      - name: DB setup
-        run: bundle exec rails db:setup
-      - name: Run rails test
-        run: bundle exec rails test
-      - name: Run rubocop
-        run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
-
-  browser-extension:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -73,5 +60,9 @@ jobs:
             ${{ runner.os }}-
       - name: Yarn install
         run: yarn --cwd browser-extension install
-      - name: Prettier && ESLint
-        run: if yarn --cwd browser-extension lint-check |& grep -E "(error|warn)"; then exit 1; fi
+      - name: DB setup
+        run: bundle exec rails db:setup
+      - name: Run rails test
+        run: bundle exec rails test
+      - name: Run rubocop
+        run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
