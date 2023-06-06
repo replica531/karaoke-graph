@@ -12,11 +12,11 @@ class TunesController < ApplicationController
     scope = current_user.tunes.all.eager_load(:results).order(:artist).order(:title)
     scope = scope.where('title LIKE ?', "%#{params[:title]}%") if params[:title].present?
     scope = scope.where('artist LIKE ?', "%#{params[:artist]}%") if params[:artist].present?
+    scope = scope.where(favorite: true) if params[:favorite]
     if params[:sort].present?
       scope = scope.sort_by(&:average_score).reverse if params[:sort] == 'average_score'
       scope = scope.sort_by { |s| s.results.length }.reverse if params[:sort] == 'results.length'
     end
-    scope = scope.where(favorite: true) if params[:favorite]
     @tunes = Kaminari.paginate_array(scope).page(params[:page]).per(20)
     @titles = current_user.tunes.pluck(:title).uniq
   end
