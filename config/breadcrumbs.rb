@@ -42,7 +42,7 @@ end
 
 crumb :tunes do
   link '曲一覧', user_tunes_path
-  parent :user, user_path(params[:user_id])
+  parent :root, user_path(params[:user_id])
 end
 
 crumb :tune do |tune|
